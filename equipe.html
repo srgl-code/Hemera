@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- ============================================================
+       PROJETO HEMERA — Equipe (equipe.html)
+       Apresentação dos membros da equipe e suas funções
+       Design: "Tech Iluminado" — Glassmorphism + Paleta Solar
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Conheça a equipe do Projeto Hemera — Automação residencial inteligente." />
+  <title>Hemera — Nossa Equipe</title>
+  <link rel="icon" type="image/x-icon" href="img/logohemera.ico" />
+
+  <!-- ==================== Google Fonts ==================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- ==================== Lucide Icons ==================== -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ==========================================================
+       1. CSS CUSTOM PROPERTIES
+       ========================================================== */
+    :root {
+      --color-bg:           #F6F4F0;
+      --color-bg-glass:     rgba(246, 244, 240, 0.65);
+      --color-primary:      #C27A53;
+      --color-primary-light:#D99B78;
+      --color-primary-dark: #A86540;
+      --color-accent:       #E8C4A0;
+      --color-text:         #2C3E40;
+      --color-text-light:   #5A6E70;
+      --color-white:        #FFFFFF;
+      --color-border:       rgba(194, 122, 83, 0.18);
+      --color-shadow:       rgba(44, 62, 64, 0.08);
+      --color-shadow-warm:  rgba(194, 122, 83, 0.12);
+
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body:    'Inter', sans-serif;
+
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  1.5rem;
+      --space-lg:  2.5rem;
+      --space-xl:  4rem;
+      --space-2xl: 6rem;
+
+      --radius-sm:  8px;
+      --radius-md:  16px;
+      --radius-lg:  24px;
+      --radius-full: 50%;
+      --blur-glass:  16px;
+      --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ==========================================================
+       2. RESET & BASE
+       ========================================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a   { color: var(--color-primary); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--color-primary-dark); }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--color-text);
+    }
+
+    /* ==========================================================
+       3. ANIMATIONS
+       ========================================================== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+
+    /* ==========================================================
+       4. LAYOUT HELPERS
+       ========================================================== */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      text-align: center;
+      margin-bottom: var(--space-xs);
+      letter-spacing: 0.04em;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--color-text-light);
+      font-size: 1.05rem;
+      max-width: 650px;
+      margin: 0 auto var(--space-xl);
+      font-weight: 300;
+    }
+
+    .accent-line {
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+      border-radius: 3px;
+      margin: var(--space-sm) auto var(--space-md);
+    }
+
+    /* ==========================================================
+       5. BACKGROUND SHAPES
+       ========================================================== */
+    .bg-shapes {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bg-shapes .shape {
+      position: absolute;
+      border-radius: var(--radius-full);
+      filter: blur(80px);
+      opacity: 0.3;
+    }
+
+    .bg-shapes .shape-1 {
+      width: 500px; height: 500px;
+      background: var(--color-accent);
+      top: -10%; right: -5%;
+    }
+
+    .bg-shapes .shape-2 {
+      width: 400px; height: 400px;
+      background: var(--color-primary-light);
+      bottom: 10%; left: -8%;
+    }
+
+    /* ==========================================================
+       6. HEADER
+       ========================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(var(--blur-glass));
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      border-bottom: 1px solid var(--color-border);
+      animation: fadeIn 0.6s ease-out both;
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .logo-area img {
+      width: 40px; height: 40px;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+    }
+
+    .logo-area .brand-name {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--color-text);
+    }
+
+    nav ul {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    nav ul li a {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+      padding: var(--space-xs) 0;
+      position: relative;
+      transition: color var(--transition);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--color-primary);
+      transition: width var(--transition);
+      border-radius: 2px;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active { color: var(--color-primary); }
+    nav ul li a:hover::after,
+    nav ul li a.active::after { width: 100%; }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text);
+    }
+
+    /* ==========================================================
+       7. PAGE HEADER
+       ========================================================== */
+    .page-header {
+      padding: var(--space-xl) var(--space-md) var(--space-lg);
+      text-align: center;
+      animation: fadeInUp 0.7s ease-out both;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .page-header p {
+      color: var(--color-text-light);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* ==========================================================
+       8. TEAM GRID
+       ========================================================== */
+    .team-section {
+      padding: 0 0 var(--space-2xl);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    /* — Member Card — */
+    .member-card {
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(var(--blur-glass));
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      transition: all var(--transition);
+      animation: fadeInUp 0.6s ease-out both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light), var(--color-accent));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .member-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px var(--color-shadow), 0 4px 16px var(--color-shadow-warm);
+    }
+
+    .member-card:hover::before {
+      opacity: 1;
+    }
+
+    /* — Avatar (placeholder com iniciais) — */
+    .member-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: var(--radius-full);
+      margin: 0 auto var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--color-white);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      box-shadow: 0 6px 24px var(--color-shadow-warm);
+      letter-spacing: 0.05em;
+    }
+
+    .member-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .member-role {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .member-desc {
+      color: var(--color-text-light);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: var(--space-md);
+    }
+
+    /* Tags de habilidades */
+    .member-skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .skill-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      padding: 0.25rem 0.7rem;
+      border-radius: 16px;
+      background: rgba(194,122,83,0.08);
+      color: var(--color-primary-dark);
+      border: 1px solid rgba(194,122,83,0.12);
+    }
+
+    /* — Social Links — */
+    .member-socials {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+    }
+
+    .member-socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: var(--radius-full);
+      background: rgba(194,122,83,0.08);
+      color: var(--color-text-light);
+      transition: all var(--transition);
+    }
+
+    .member-socials a:hover {
+      background: var(--color-primary);
+      color: var(--color-white);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================
+       9. ROLES / ORGANOGRAMA SECTION
+       ========================================================== */
+    .roles-section {
+      padding: var(--space-2xl) 0;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .role-card {
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(var(--blur-glass));
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      transition: all var(--transition);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+
+    .role-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px var(--color-shadow);
+    }
+
+    .role-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(194,122,83,0.12), rgba(217,155,120,0.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+
+    .role-info h4 {
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .role-info p {
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================
+       10. CONTACT CTA
+       ========================================================== */
+    .contact-section {
+      padding: var(--space-2xl) 0;
+      text-align: center;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl) var(--space-lg);
+      color: var(--color-white);
+      position: relative;
+      overflow: hidden;
+      animation: scaleIn 0.7s ease-out both;
+    }
+
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .contact-card h2 {
+      color: var(--color-white);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: var(--space-sm);
+      position: relative;
+    }
+
+    .contact-card p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      max-width: 500px;
+      margin: 0 auto var(--space-lg);
+      position: relative;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0.8rem 1.8rem;
+      border-radius: var(--radius-md);
+      background: var(--color-white);
+      color: var(--color-primary);
+      transition: all var(--transition);
+      text-transform: uppercase;
+    }
+
+    .contact-btn:hover {
+      background: var(--color-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      color: var(--color-primary);
+    }
+
+    /* ==========================================================
+       11. FOOTER
+       ========================================================== */
+    footer {
+      padding: var(--space-lg) 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .footer-brand {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--color-text);
+    }
+
+    footer p {
+      color: var(--color-text-light);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    .footer-links li a {
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+    }
+
+    .footer-links li a:hover { color: var(--color-primary); }
+
+    /* ==========================================================
+       12. MOBILE MENU
+       ========================================================== */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-lg);
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .mobile-menu a {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--color-text);
+      text-transform: uppercase;
+    }
+
+    .mobile-menu a:hover { color: var(--color-primary); }
+
+    .mobile-menu .close-btn {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text);
+    }
+
+    /* ==========================================================
+       13. RESPONSIVE
+       ========================================================== */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .mobile-toggle { display: block; }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .roles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --space-lg: 1.8rem;
+        --space-xl: 2.8rem;
+        --space-2xl: 4rem;
+      }
+
+      header .container { height: 60px; }
+      .logo-area .brand-name { font-size: 1.1rem; }
+    }
+
+    /* ==========================================================
+       14. SCROLL-REVEAL
+       ========================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== Background Shapes ==================== -->
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+  </div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo-area" aria-label="Hemera — Página Inicial">
+        <img src="img/logosvg.svg" alt="Logo Hemera" />
+        <span class="brand-name">HEMERA</span>
+      </a>
+
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="documentacao.html">Documentação</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="equipe.html" class="active">Equipe</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-toggle" aria-label="Abrir menu" onclick="toggleMenu()">
+        <i data-lucide="menu" style="width:28px;height:28px;"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== Mobile Menu ==================== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" aria-label="Fechar menu" onclick="toggleMenu()">
+      <i data-lucide="x" style="width:32px;height:32px;"></i>
+    </button>
+    <a href="index.html" onclick="toggleMenu()">Início</a>
+    <a href="documentacao.html" onclick="toggleMenu()">Documentação</a>
+    <a href="dashboard.html" onclick="toggleMenu()">Dashboard</a>
+    <a href="equipe.html" onclick="toggleMenu()">Equipe</a>
+  </div>
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Nossa Equipe</h1>
+      <span class="accent-line"></span>
+      <p>
+        Conheça os profissionais por trás do Projeto Hemera — engenheiros,
+        designers e pesquisadores unidos pela inovação em automação residencial.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== TEAM MEMBERS ==================== -->
+  <section class="team-section" aria-label="Membros da equipe">
+    <div class="container">
+      <div class="team-grid">
+
+        <!-- Membro 1 -->
+        <article class="member-card reveal delay-1">
+          <div class="member-avatar">AB</div>
+          <h3>Ana Beatriz</h3>
+          <span class="member-role">Gerente de Projeto</span>
+          <p class="member-desc">
+            Responsável pelo planejamento, escopo e gestão de riscos.
+            Garante a entrega dentro do cronograma e dos padrões de qualidade.
+          </p>
+          <div class="member-skills">
+            <span class="skill-tag">PMBOK</span>
+            <span class="skill-tag">Scrum</span>
+            <span class="skill-tag">Liderança</span>
+          </div>
+          <div class="member-socials">
+            <a href="#" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
+            </a>
+            <a href="#" aria-label="E-mail">
+              <i data-lucide="mail" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Membro 2 -->
+        <article class="member-card reveal delay-2">
+          <div class="member-avatar">RM</div>
+          <h3>Rafael Mendes</h3>
+          <span class="member-role">Desenvolvedor Full Stack</span>
+          <p class="member-desc">
+            Arquitetura e desenvolvimento do dashboard web, API REST e
+            integração com os microcontroladores via protocolo MQTT.
+          </p>
+          <div class="member-skills">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">MQTT</span>
+            <span class="skill-tag">REST API</span>
+          </div>
+          <div class="member-socials">
+            <a href="#" aria-label="GitHub">
+              <i data-lucide="github" style="width:16px;height:16px;"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Membro 3 -->
+        <article class="member-card reveal delay-3">
+          <div class="member-avatar">LC</div>
+          <h3>Lucas Carvalho</h3>
+          <span class="member-role">Engenheiro de Hardware</span>
+          <p class="member-desc">
+            Projeto e prototipagem dos circuitos eletrônicos, seleção de
+            sensores IoT e programação do firmware em C/C++ para ESP32.
+          </p>
+          <div class="member-skills">
+            <span class="skill-tag">ESP32</span>
+            <span class="skill-tag">C/C++</span>
+            <span class="skill-tag">PCB Design</span>
+            <span class="skill-tag">IoT</span>
+          </div>
+          <div class="member-socials">
+            <a href="#" aria-label="GitHub">
+              <i data-lucide="github" style="width:16px;height:16px;"></i>
+            </a>
+            <a href="#" aria-label="E-mail">
+              <i data-lucide="mail" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Membro 4 -->
+        <article class="member-card reveal delay-4">
+          <div class="member-avatar">MS</div>
+          <h3>Mariana Silva</h3>
+          <span class="member-role">Designer UX/UI</span>
+          <p class="member-desc">
+            Criação da identidade visual, wireframes, protótipos interativos e
+            design da interface de monitoramento energético.
+          </p>
+          <div class="member-skills">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">UI Design</span>
+            <span class="skill-tag">Pesquisa UX</span>
+          </div>
+          <div class="member-socials">
+            <a href="#" aria-label="Behance">
+              <i data-lucide="palette" style="width:16px;height:16px;"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Membro 5 -->
+        <article class="member-card reveal delay-5">
+          <div class="member-avatar">PO</div>
+          <h3>Pedro Oliveira</h3>
+          <span class="member-role">Engenheiro de Dados</span>
+          <p class="member-desc">
+            Pipeline de dados, modelagem de consumo energético com Machine
+            Learning e análise preditiva para otimização de recursos.
+          </p>
+          <div class="member-skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">ML</span>
+          </div>
+          <div class="member-socials">
+            <a href="#" aria-label="GitHub">
+              <i data-lucide="github" style="width:16px;height:16px;"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Membro 6 -->
+        <article class="member-card reveal delay-6">
+          <div class="member-avatar">JF</div>
+          <h3>Juliana Ferreira</h3>
+          <span class="member-role">Pesquisadora / QA</span>
+          <p class="member-desc">
+            Pesquisa acadêmica em eficiência energética, redação técnica e
+            garantia de qualidade dos testes e entregáveis do projeto.
+          </p>
+          <div class="member-skills">
+            <span class="skill-tag">Pesquisa</span>
+            <span class="skill-tag">QA</span>
+            <span class="skill-tag">Documentação</span>
+          </div>
+          <div class="member-socials">
+            <a href="#" aria-label="LinkedIn">
+              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
+            </a>
+            <a href="#" aria-label="E-mail">
+              <i data-lucide="mail" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ROLES / ORGANOGRAMA ==================== -->
+  <section class="roles-section" aria-label="Áreas de atuação">
+    <div class="container">
+      <h2 class="section-title reveal">Áreas de Atuação</h2>
+      <span class="accent-line reveal"></span>
+      <p class="section-subtitle reveal">
+        Como organizamos as responsabilidades para garantir entregas eficientes.
+      </p>
+
+      <div class="roles-grid">
+
+        <div class="role-card reveal delay-1">
+          <div class="role-icon">
+            <i data-lucide="layout-dashboard" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="role-info">
+            <h4>Gestão &amp; Planejamento</h4>
+            <p>Cronograma, escopo, riscos e comunicação com stakeholders.</p>
+          </div>
+        </div>
+
+        <div class="role-card reveal delay-2">
+          <div class="role-icon">
+            <i data-lucide="code-2" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="role-info">
+            <h4>Desenvolvimento Software</h4>
+            <p>Dashboard, API, integração MQTT e interface web responsiva.</p>
+          </div>
+        </div>
+
+        <div class="role-card reveal delay-3">
+          <div class="role-icon">
+            <i data-lucide="cpu" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="role-info">
+            <h4>Engenharia de Hardware</h4>
+            <p>Circuitos eletrônicos, sensores IoT, firmware e prototipagem.</p>
+          </div>
+        </div>
+
+        <div class="role-card reveal delay-4">
+          <div class="role-icon">
+            <i data-lucide="pen-tool" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="role-info">
+            <h4>Design &amp; Experiência</h4>
+            <p>Identidade visual, UX research, prototipagem e testes de usabilidade.</p>
+          </div>
+        </div>
+
+        <div class="role-card reveal delay-5">
+          <div class="role-icon">
+            <i data-lucide="bar-chart-3" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="role-info">
+            <h4>Dados &amp; Machine Learning</h4>
+            <p>Análise preditiva, pipelines de dados e modelagem de consumo.</p>
+          </div>
+        </div>
+
+        <div class="role-card reveal delay-6">
+          <div class="role-icon">
+            <i data-lucide="file-check" style="width:22px;height:22px;"></i>
+          </div>
+          <div class="role-info">
+            <h4>Pesquisa &amp; Qualidade</h4>
+            <p>Pesquisa acadêmica, testes de qualidade e documentação técnica.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT CTA ==================== -->
+  <section class="contact-section" aria-label="Contato">
+    <div class="container">
+      <div class="contact-card reveal">
+        <h2>Quer saber mais?</h2>
+        <p>
+          Entre em contato com a equipe Hemera para dúvidas, parcerias
+          ou colaborações acadêmicas.
+        </p>
+        <div class="contact-links">
+          <a href="#" class="contact-btn">
+            <i data-lucide="mail" style="width:18px;height:18px;"></i>
+            E-mail da Equipe
+          </a>
+          <a href="#" class="contact-btn">
+            <i data-lucide="message-circle" style="width:18px;height:18px;"></i>
+            Canal no Discord
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <span class="footer-brand">HEMERA</span>
+      <p>Projeto de Automação Residencial — Eficiência Energética &amp; Gestão Inteligente</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="documentacao.html">Documentação</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="equipe.html">Equipe</a></li>
+      </ul>
+      <p>&copy; 2026 Hemera. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script>
+    /* — Inicializar ícones Lucide — */
+    lucide.createIcons();
+
+    /* — Mobile Menu — */
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    /* — Scroll Reveal — */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+
+</body>
+</html>

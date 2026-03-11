@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- ============================================================
+       PROJETO HEMERA — Documentação & Artefatos (documentacao.html)
+       Repositório central de documentos, Google Drive embeds e artefatos
+       Design: "Tech Iluminado" — Glassmorphism + Paleta Solar
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Documentação e artefatos do Projeto Hemera — Automação residencial inteligente." />
+  <title>Hemera — Documentação & Artefatos</title>
+  <link rel="icon" type="image/x-icon" href="img/logohemera.ico" />
+
+  <!-- ==================== Google Fonts ==================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- ==================== Lucide Icons ==================== -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ==========================================================
+       1. CSS CUSTOM PROPERTIES (Design Tokens)
+       ========================================================== */
+    :root {
+      --color-bg:           #F6F4F0;
+      --color-bg-glass:     rgba(246, 244, 240, 0.65);
+      --color-primary:      #C27A53;
+      --color-primary-light:#D99B78;
+      --color-primary-dark: #A86540;
+      --color-accent:       #E8C4A0;
+      --color-text:         #2C3E40;
+      --color-text-light:   #5A6E70;
+      --color-white:        #FFFFFF;
+      --color-border:       rgba(194, 122, 83, 0.18);
+      --color-shadow:       rgba(44, 62, 64, 0.08);
+      --color-shadow-warm:  rgba(194, 122, 83, 0.12);
+
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body:    'Inter', sans-serif;
+
+      --space-xs:  0.5rem;
+      --space-sm:  1rem;
+      --space-md:  1.5rem;
+      --space-lg:  2.5rem;
+      --space-xl:  4rem;
+      --space-2xl: 6rem;
+
+      --radius-sm:  8px;
+      --radius-md:  16px;
+      --radius-lg:  24px;
+      --radius-full: 50%;
+      --blur-glass:  16px;
+      --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ==========================================================
+       2. RESET & BASE
+       ========================================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a   { color: var(--color-primary); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--color-primary-dark); }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--color-text);
+    }
+
+    /* ==========================================================
+       3. KEYFRAME ANIMATIONS
+       ========================================================== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+
+    /* ==========================================================
+       4. LAYOUT HELPERS
+       ========================================================== */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      text-align: center;
+      margin-bottom: var(--space-xs);
+      letter-spacing: 0.04em;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--color-text-light);
+      font-size: 1.05rem;
+      max-width: 650px;
+      margin: 0 auto var(--space-xl);
+      font-weight: 300;
+    }
+
+    .accent-line {
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+      border-radius: 3px;
+      margin: var(--space-sm) auto var(--space-md);
+    }
+
+    /* ==========================================================
+       5. DECORATIVE BACKGROUND SHAPES
+       ========================================================== */
+    .bg-shapes {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bg-shapes .shape {
+      position: absolute;
+      border-radius: var(--radius-full);
+      filter: blur(80px);
+      opacity: 0.35;
+    }
+
+    .bg-shapes .shape-1 {
+      width: 500px; height: 500px;
+      background: var(--color-accent);
+      top: -10%; right: -5%;
+    }
+
+    .bg-shapes .shape-2 {
+      width: 400px; height: 400px;
+      background: var(--color-primary-light);
+      bottom: 10%; left: -8%;
+    }
+
+    /* ==========================================================
+       6. HEADER / NAVIGATION
+       ========================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(var(--blur-glass));
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      border-bottom: 1px solid var(--color-border);
+      animation: fadeIn 0.6s ease-out both;
+    }
+
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .logo-area img {
+      width: 40px; height: 40px;
+      object-fit: contain;
+      border-radius: var(--radius-sm);
+    }
+
+    .logo-area .brand-name {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--color-text);
+    }
+
+    nav ul {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    nav ul li a {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-light);
+      padding: var(--space-xs) 0;
+      position: relative;
+      transition: color var(--transition);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--color-primary);
+      transition: width var(--transition);
+      border-radius: 2px;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: var(--color-primary);
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text);
+    }
+
+    /* ==========================================================
+       7. PAGE HEADER (Banner interno)
+       ========================================================== */
+    .page-header {
+      padding: var(--space-xl) var(--space-md) var(--space-lg);
+      text-align: center;
+      animation: fadeInUp 0.7s ease-out both;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .page-header p {
+      color: var(--color-text-light);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    /* ==========================================================
+       8. DOCUMENT CATEGORIES (Tabs)
+       ========================================================== */
+    .doc-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-xl);
+      animation: fadeIn 0.6s ease-out 0.2s both;
+    }
+
+    .doc-tab {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--color-border);
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(8px);
+      color: var(--color-text-light);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .doc-tab:hover,
+    .doc-tab.active {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      color: var(--color-white);
+      border-color: transparent;
+      box-shadow: 0 4px 16px var(--color-shadow-warm);
+    }
+
+    /* ==========================================================
+       9. DOCUMENTS GRID
+       ========================================================== */
+    .docs-section {
+      padding: 0 0 var(--space-2xl);
+    }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    /* — Individual Document Card — */
+    .doc-card {
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(var(--blur-glass));
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px var(--color-shadow), 0 4px 16px var(--color-shadow-warm);
+    }
+
+    .doc-card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-md) var(--space-sm);
+    }
+
+    .doc-card-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(194,122,83,0.12), rgba(217,155,120,0.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+
+    .doc-card-meta {
+      flex: 1;
+    }
+
+    .doc-card-meta h3 {
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      margin-bottom: 2px;
+    }
+
+    .doc-card-meta .doc-type {
+      font-size: 0.78rem;
+      color: var(--color-text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+    }
+
+    .doc-card-body {
+      padding: 0 var(--space-md) var(--space-sm);
+    }
+
+    .doc-card-body p {
+      color: var(--color-text-light);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .doc-card-footer {
+      padding: var(--space-sm) var(--space-md) var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .doc-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      background: rgba(194,122,83,0.1);
+      color: var(--color-primary);
+    }
+
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      letter-spacing: 0.03em;
+      transition: all var(--transition);
+    }
+
+    .doc-link:hover {
+      color: var(--color-primary-dark);
+      transform: translateX(3px);
+    }
+
+    /* ==========================================================
+       10. GOOGLE DRIVE EMBED SECTION
+       ========================================================== */
+    .drive-section {
+      padding: var(--space-2xl) 0;
+    }
+
+    .drive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .drive-card {
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(var(--blur-glass));
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      animation: scaleIn 0.6s ease-out both;
+      transition: all var(--transition);
+    }
+
+    .drive-card:hover {
+      box-shadow: 0 12px 40px var(--color-shadow), 0 4px 12px var(--color-shadow-warm);
+    }
+
+    .drive-card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .drive-card-header .drive-icon {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, rgba(194,122,83,0.12), rgba(217,155,120,0.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+
+    .drive-card-header h3 {
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .drive-card-header .drive-desc {
+      font-size: 0.82rem;
+      color: var(--color-text-light);
+    }
+
+    /* — Contêiner do iframe (esconde bordas Google) — */
+    .drive-embed-wrapper {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+      background: var(--color-white);
+    }
+
+    .drive-embed-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* — Placeholder quando sem URL — */
+    .drive-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--color-text-light);
+      gap: var(--space-sm);
+      padding: var(--space-lg);
+      text-align: center;
+    }
+
+    .drive-placeholder i {
+      color: var(--color-border);
+    }
+
+    .drive-placeholder p {
+      font-size: 0.9rem;
+    }
+
+    .drive-placeholder code {
+      background: rgba(194,122,83,0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--color-primary);
+    }
+
+    /* ==========================================================
+       11. TIMELINE / CRONOGRAMA
+       ========================================================== */
+    .timeline-section {
+      padding: var(--space-2xl) 0;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-primary), var(--color-primary-light), var(--color-accent));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: var(--space-lg);
+      animation: fadeInUp 0.6s ease-out both;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 6px;
+      width: 14px; height: 14px;
+      border-radius: var(--radius-full);
+      background: var(--color-primary);
+      border: 3px solid var(--color-bg);
+      box-shadow: 0 0 0 3px var(--color-primary-light);
+    }
+
+    .timeline-item.completed .timeline-dot {
+      background: var(--color-primary);
+    }
+
+    .timeline-item.active .timeline-dot {
+      background: var(--color-primary-light);
+      animation: pulseGlow 2s ease-in-out infinite;
+      box-shadow: 0 0 0 3px var(--color-primary);
+    }
+
+    .timeline-item.upcoming .timeline-dot {
+      background: var(--color-accent);
+      box-shadow: 0 0 0 3px var(--color-border);
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 3px var(--color-primary), 0 0 12px rgba(194,122,83,0.3); }
+      50%      { box-shadow: 0 0 0 3px var(--color-primary), 0 0 24px rgba(194,122,83,0.5); }
+    }
+
+    .timeline-content {
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(var(--blur-glass));
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+    }
+
+    .timeline-content h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content .timeline-date {
+      font-size: 0.78rem;
+      color: var(--color-primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .timeline-content p {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      line-height: 1.6;
+    }
+
+    /* ==========================================================
+       12. FOOTER
+       ========================================================== */
+    footer {
+      padding: var(--space-lg) 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    footer .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .footer-brand {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--color-text);
+    }
+
+    footer p {
+      color: var(--color-text-light);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    .footer-links li a {
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+    }
+
+    .footer-links li a:hover { color: var(--color-primary); }
+
+    /* ==========================================================
+       13. MOBILE MENU
+       ========================================================== */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: var(--color-bg-glass);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-lg);
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .mobile-menu a {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--color-text);
+      text-transform: uppercase;
+    }
+
+    .mobile-menu a:hover { color: var(--color-primary); }
+
+    .mobile-menu .close-btn {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text);
+    }
+
+    /* ==========================================================
+       14. RESPONSIVE
+       ========================================================== */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .mobile-toggle { display: block; }
+
+      .docs-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .drive-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .drive-embed-wrapper {
+        height: 320px;
+      }
+
+      .timeline {
+        padding-left: 30px;
+      }
+
+      .timeline-dot {
+        left: -22px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --space-lg: 1.8rem;
+        --space-xl: 2.8rem;
+        --space-2xl: 4rem;
+      }
+
+      header .container { height: 60px; }
+      .logo-area .brand-name { font-size: 1.1rem; }
+    }
+
+    /* ==========================================================
+       15. SCROLL-REVEAL
+       ========================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== Background Shapes ==================== -->
+  <div class="bg-shapes" aria-hidden="true">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+  </div>
+
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo-area" aria-label="Hemera — Página Inicial">
+        <img src="img/logosvg.svg" alt="Logo Hemera" />
+        <span class="brand-name">HEMERA</span>
+      </a>
+
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="documentacao.html" class="active">Documentação</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="equipe.html">Equipe</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-toggle" aria-label="Abrir menu" onclick="toggleMenu()">
+        <i data-lucide="menu" style="width:28px;height:28px;"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== Mobile Menu ==================== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" aria-label="Fechar menu" onclick="toggleMenu()">
+      <i data-lucide="x" style="width:32px;height:32px;"></i>
+    </button>
+    <a href="index.html" onclick="toggleMenu()">Início</a>
+    <a href="documentacao.html" onclick="toggleMenu()">Documentação</a>
+    <a href="dashboard.html" onclick="toggleMenu()">Dashboard</a>
+    <a href="equipe.html" onclick="toggleMenu()">Equipe</a>
+  </div>
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Documentação &amp; Artefatos</h1>
+      <span class="accent-line"></span>
+      <p>
+        Repositório central de toda a documentação técnica, diagramas,
+        relatórios e artefatos de engenharia do Projeto Hemera.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== CATEGORY TABS ==================== -->
+  <section class="docs-section" aria-label="Documentos do projeto">
+    <div class="container">
+
+      <div class="doc-tabs">
+        <button class="doc-tab active" onclick="filterDocs('all', this)">Todos</button>
+        <button class="doc-tab" onclick="filterDocs('tecnico', this)">Técnico</button>
+        <button class="doc-tab" onclick="filterDocs('gestao', this)">Gestão</button>
+        <button class="doc-tab" onclick="filterDocs('design', this)">Design</button>
+        <button class="doc-tab" onclick="filterDocs('pesquisa', this)">Pesquisa</button>
+      </div>
+
+      <!-- ==================== DOCUMENTS GRID ==================== -->
+      <div class="docs-grid" id="docsGrid">
+
+        <!-- Card 1 — Especificação Técnica -->
+        <article class="doc-card reveal" data-category="tecnico">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="file-code" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Especificação Técnica</h3>
+              <span class="doc-type">Documento Técnico</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Detalhamento completo da arquitetura de hardware e software, incluindo diagramas de blocos, protocolos de comunicação e requisitos do sistema.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">PDF</span>
+            <a href="#" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 2 — Diagrama de Componentes -->
+        <article class="doc-card reveal delay-1" data-category="tecnico">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="git-branch" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Diagrama de Componentes</h3>
+              <span class="doc-type">Diagrama UML</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Visão geral da interconexão entre microcontroladores, sensores IoT, gateway MQTT e a interface web do dashboard.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">Imagem</span>
+            <a href="#" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3 — Plano de Gestão -->
+        <article class="doc-card reveal delay-2" data-category="gestao">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="clipboard-list" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Plano de Gestão do Projeto</h3>
+              <span class="doc-type">Gestão / PMBOK</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Cronograma, escopo, riscos identificados, marcos e estrutura analítica do projeto (EAP) seguindo boas práticas do PMBOK.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">DOCX</span>
+            <a href="#" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 4 — Design System -->
+        <article class="doc-card reveal delay-3" data-category="design">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="palette" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Design System Hemera</h3>
+              <span class="doc-type">UI / UX</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Guia de identidade visual, paleta de cores, tipografia, componentes de interface e diretrizes de usabilidade do projeto.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">Figma</span>
+            <a href="#" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 5 — Pesquisa de Mercado -->
+        <article class="doc-card reveal delay-4" data-category="pesquisa">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="search" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Pesquisa de Mercado</h3>
+              <span class="doc-type">Pesquisa</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Análise de soluções concorrentes, benchmarking de dispositivos IoT residenciais e oportunidades de diferenciação de mercado.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">PDF</span>
+            <a href="#" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 6 — Manual de Instalação -->
+        <article class="doc-card reveal delay-5" data-category="tecnico">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="wrench" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Manual de Instalação</h3>
+              <span class="doc-type">Tutorial Técnico</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Guia passo a passo para instalação e configuração de sensores, controladores e integração com o dashboard Hemera.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">MD</span>
+            <a href="#" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+      </div><!-- /docs-grid -->
+    </div>
+  </section>
+
+  <!-- ==================== GOOGLE DRIVE EMBEDS ==================== -->
+  <section class="drive-section" aria-label="Pastas do Google Drive">
+    <div class="container">
+      <h2 class="section-title reveal">Arquivos no Google Drive</h2>
+      <span class="accent-line reveal"></span>
+      <p class="section-subtitle reveal">
+        Acesse diretamente as pastas compartilhadas do projeto. Substitua as URLs
+        de exemplo pelos links reais das pastas do Drive da equipe.
+      </p>
+
+      <div class="drive-grid">
+
+        <!-- Drive Card 1 — Documentos Gerais -->
+        <div class="drive-card reveal delay-1">
+          <div class="drive-card-header">
+            <div class="drive-icon">
+              <i data-lucide="folder" style="width:22px;height:22px;"></i>
+            </div>
+            <div>
+              <h3>Documentos Gerais</h3>
+              <span class="drive-desc">Relatórios, atas e entregáveis do projeto</span>
+            </div>
+          </div>
+          <div class="drive-embed-wrapper">
+            <!-- ============================================================
+                 INSTRUÇÕES: Substitua o src abaixo pela URL embed da pasta
+                 do Google Drive da equipe. Formato:
+                 https://drive.google.com/embeddedfolderview?id=SEU_FOLDER_ID#grid
+                 ============================================================ -->
+            <div class="drive-placeholder">
+              <i data-lucide="cloud-upload" style="width:48px;height:48px;"></i>
+              <p><strong>Cole aqui o embed do Google Drive</strong></p>
+              <p>Substitua este placeholder pelo iframe com a URL da pasta compartilhada:</p>
+              <code>&lt;iframe src="https://drive.google.com/embeddedfolderview?id=SEU_ID#grid"&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drive Card 2 — Código & Firmware -->
+        <div class="drive-card reveal delay-2">
+          <div class="drive-card-header">
+            <div class="drive-icon">
+              <i data-lucide="code-2" style="width:22px;height:22px;"></i>
+            </div>
+            <div>
+              <h3>Código &amp; Firmware</h3>
+              <span class="drive-desc">Scripts, firmwares e configurações</span>
+            </div>
+          </div>
+          <div class="drive-embed-wrapper">
+            <div class="drive-placeholder">
+              <i data-lucide="cloud-upload" style="width:48px;height:48px;"></i>
+              <p><strong>Cole aqui o embed do Google Drive</strong></p>
+              <p>Substitua este placeholder pelo iframe com a URL da pasta:</p>
+              <code>&lt;iframe src="https://drive.google.com/embeddedfolderview?id=SEU_ID#grid"&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drive Card 3 — Diagramas & Imagens -->
+        <div class="drive-card reveal delay-3">
+          <div class="drive-card-header">
+            <div class="drive-icon">
+              <i data-lucide="image" style="width:22px;height:22px;"></i>
+            </div>
+            <div>
+              <h3>Diagramas &amp; Imagens</h3>
+              <span class="drive-desc">Esquemáticos, wireframes e mockups</span>
+            </div>
+          </div>
+          <div class="drive-embed-wrapper">
+            <div class="drive-placeholder">
+              <i data-lucide="cloud-upload" style="width:48px;height:48px;"></i>
+              <p><strong>Cole aqui o embed do Google Drive</strong></p>
+              <p>Substitua este placeholder pelo iframe com a URL da pasta:</p>
+              <code>&lt;iframe src="https://drive.google.com/embeddedfolderview?id=SEU_ID#grid"&gt;</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drive Card 4 — Apresentações -->
+        <div class="drive-card reveal delay-4">
+          <div class="drive-card-header">
+            <div class="drive-icon">
+              <i data-lucide="presentation" style="width:22px;height:22px;"></i>
+            </div>
+            <div>
+              <h3>Apresentações</h3>
+              <span class="drive-desc">Slides e pitches do projeto</span>
+            </div>
+          </div>
+          <div class="drive-embed-wrapper">
+            <div class="drive-placeholder">
+              <i data-lucide="cloud-upload" style="width:48px;height:48px;"></i>
+              <p><strong>Cole aqui o embed do Google Drive</strong></p>
+              <p>Substitua este placeholder pelo iframe com a URL da pasta:</p>
+              <code>&lt;iframe src="https://drive.google.com/embeddedfolderview?id=SEU_ID#grid"&gt;</code>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /drive-grid -->
+    </div>
+  </section>
+
+  <!-- ==================== CRONOGRAMA / TIMELINE ==================== -->
+  <section class="timeline-section" aria-label="Cronograma do Projeto">
+    <div class="container">
+      <h2 class="section-title reveal">Cronograma</h2>
+      <span class="accent-line reveal"></span>
+      <p class="section-subtitle reveal">
+        Marcos e entregas principais do desenvolvimento do Projeto Hemera.
+      </p>
+
+      <div class="timeline">
+        <!-- Sprint 1 -->
+        <div class="timeline-item completed reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Sprint 1 — Jan 2026</span>
+            <h4>Levantamento de Requisitos</h4>
+            <p>Pesquisa de mercado, definição de stakeholders, requisitos funcionais e não-funcionais.</p>
+          </div>
+        </div>
+
+        <!-- Sprint 2 -->
+        <div class="timeline-item completed reveal delay-1">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Sprint 2 — Fev 2026</span>
+            <h4>Protótipo de Hardware</h4>
+            <p>Montagem do circuito de sensores, testes com ESP32 e integração MQTT inicial.</p>
+          </div>
+        </div>
+
+        <!-- Sprint 3 — Ativo -->
+        <div class="timeline-item active reveal delay-2">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Sprint 3 — Mar 2026</span>
+            <h4>Dashboard &amp; Interface Web</h4>
+            <p>Desenvolvimento do dashboard de monitoramento e interface de controle responsiva.</p>
+          </div>
+        </div>
+
+        <!-- Sprint 4 -->
+        <div class="timeline-item upcoming reveal delay-3">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Sprint 4 — Abr 2026</span>
+            <h4>Integração &amp; Testes</h4>
+            <p>Integração completa hardware-software, testes de carga e otimização de algoritmos.</p>
+          </div>
+        </div>
+
+        <!-- Sprint 5 -->
+        <div class="timeline-item upcoming reveal delay-4">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">Sprint 5 — Mai 2026</span>
+            <h4>Entrega Final &amp; Apresentação</h4>
+            <p>Documentação final, apresentação do projeto, defesa e entrega do relatório completo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <span class="footer-brand">HEMERA</span>
+      <p>Projeto de Automação Residencial — Eficiência Energética &amp; Gestão Inteligente</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="documentacao.html">Documentação</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="equipe.html">Equipe</a></li>
+      </ul>
+      <p>&copy; 2026 Hemera. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script>
+    /* — Inicializar ícones Lucide — */
+    lucide.createIcons();
+
+    /* — Mobile Menu Toggle — */
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    /* — Document Category Filter — */
+    function filterDocs(category, btn) {
+      /* Atualiza tab ativa */
+      document.querySelectorAll('.doc-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+
+      /* Filtra cards */
+      const cards = document.querySelectorAll('.doc-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = '';
+          card.style.animation = 'fadeInUp 0.4s ease-out both';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    /* — Scroll Reveal — */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+
+</body>
+</html>
