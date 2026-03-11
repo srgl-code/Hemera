@@ -2,3 +2,7 @@
 node_modules
 .DS_Store
 Thumbs.db
+.env*.local
+
+node_modules
+.env.local
