@@ -584,37 +584,30 @@
     }
 
     .timeline-item.active .timeline-content {
-      border-color: var(--color-primary);
-      box-shadow: 0 0 20px rgba(194,122,83,0.15);
+      border-left: 3px solid var(--color-primary);
     }
 
     .timeline-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--color-primary);
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 4px 12px;
-      border-radius: var(--radius-full);
-      margin-bottom: 8px;
-      animation: pulseGlow 2s ease-in-out infinite;
+      color: var(--color-primary);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
 
     .timeline-badge::before {
       content: '';
-      width: 8px; height: 8px;
+      width: 6px; height: 6px;
       border-radius: 50%;
-      background: #fff;
-      animation: badgePulse 1.4s ease-in-out infinite;
+      background: var(--color-primary);
+      animation: dotBreathe 2s ease-in-out infinite;
     }
 
-    @keyframes badgePulse {
-      0%, 100% { opacity: 1; }
-      50%      { opacity: 0.4; }
+    @keyframes dotBreathe {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.4; transform: scale(0.7); }
     }
 
     .timeline-item.upcoming .timeline-dot {
@@ -1082,9 +1075,9 @@
         <div class="timeline-item active reveal delay-3">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <span class="timeline-badge">Estamos aqui</span>
             <span class="timeline-date">Fase Atual — Ideação</span>
             <h4>Criar Possíveis Soluções</h4>
+            <span class="timeline-badge">em andamento</span>
             <p>Brainstorming, análise de impacto vs esforço e priorização de funcionalidades para o MVP do Hemera.</p>
           </div>
         </div>
