@@ -821,142 +821,141 @@
 
       <div class="doc-tabs">
         <button class="doc-tab active" onclick="filterDocs('all', this)">Todos</button>
-        <button class="doc-tab" onclick="filterDocs('tecnico', this)">Técnico</button>
-        <button class="doc-tab" onclick="filterDocs('gestao', this)">Gestão</button>
-        <button class="doc-tab" onclick="filterDocs('design', this)">Design</button>
         <button class="doc-tab" onclick="filterDocs('pesquisa', this)">Pesquisa</button>
+        <button class="doc-tab" onclick="filterDocs('gestao', this)">Gestão</button>
+        <button class="doc-tab" onclick="filterDocs('planejamento', this)">Planejamento</button>
       </div>
 
       <!-- ==================== DOCUMENTS GRID ==================== -->
       <div class="docs-grid" id="docsGrid">
 
-        <!-- Card 1 — Especificação Técnica -->
-        <article class="doc-card reveal" data-category="tecnico">
-          <div class="doc-card-header">
-            <div class="doc-card-icon">
-              <i data-lucide="file-code" style="width:24px;height:24px;"></i>
-            </div>
-            <div class="doc-card-meta">
-              <h3>Especificação Técnica</h3>
-              <span class="doc-type">Documento Técnico</span>
-            </div>
-          </div>
-          <div class="doc-card-body">
-            <p>Detalhamento completo da arquitetura de hardware e software, incluindo diagramas de blocos, protocolos de comunicação e requisitos do sistema.</p>
-          </div>
-          <div class="doc-card-footer">
-            <span class="doc-badge">PDF</span>
-            <a href="#" class="doc-link">
-              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Card 2 — Diagrama de Componentes -->
-        <article class="doc-card reveal delay-1" data-category="tecnico">
-          <div class="doc-card-header">
-            <div class="doc-card-icon">
-              <i data-lucide="git-branch" style="width:24px;height:24px;"></i>
-            </div>
-            <div class="doc-card-meta">
-              <h3>Diagrama de Componentes</h3>
-              <span class="doc-type">Diagrama UML</span>
-            </div>
-          </div>
-          <div class="doc-card-body">
-            <p>Visão geral da interconexão entre microcontroladores, sensores IoT, gateway MQTT e a interface web do dashboard.</p>
-          </div>
-          <div class="doc-card-footer">
-            <span class="doc-badge">Imagem</span>
-            <a href="#" class="doc-link">
-              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Card 3 — Plano de Gestão -->
-        <article class="doc-card reveal delay-2" data-category="gestao">
-          <div class="doc-card-header">
-            <div class="doc-card-icon">
-              <i data-lucide="clipboard-list" style="width:24px;height:24px;"></i>
-            </div>
-            <div class="doc-card-meta">
-              <h3>Plano de Gestão do Projeto</h3>
-              <span class="doc-type">Gestão / PMBOK</span>
-            </div>
-          </div>
-          <div class="doc-card-body">
-            <p>Cronograma, escopo, riscos identificados, marcos e estrutura analítica do projeto (EAP) seguindo boas práticas do PMBOK.</p>
-          </div>
-          <div class="doc-card-footer">
-            <span class="doc-badge">DOCX</span>
-            <a href="#" class="doc-link">
-              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Card 4 — Design System -->
-        <article class="doc-card reveal delay-3" data-category="design">
-          <div class="doc-card-header">
-            <div class="doc-card-icon">
-              <i data-lucide="palette" style="width:24px;height:24px;"></i>
-            </div>
-            <div class="doc-card-meta">
-              <h3>Design System Hemera</h3>
-              <span class="doc-type">UI / UX</span>
-            </div>
-          </div>
-          <div class="doc-card-body">
-            <p>Guia de identidade visual, paleta de cores, tipografia, componentes de interface e diretrizes de usabilidade do projeto.</p>
-          </div>
-          <div class="doc-card-footer">
-            <span class="doc-badge">Figma</span>
-            <a href="#" class="doc-link">
-              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
-            </a>
-          </div>
-        </article>
-
-        <!-- Card 5 — Pesquisa de Mercado -->
-        <article class="doc-card reveal delay-4" data-category="pesquisa">
+        <!-- Card 1 — Desk Research -->
+        <article class="doc-card reveal" data-category="pesquisa">
           <div class="doc-card-header">
             <div class="doc-card-icon">
               <i data-lucide="search" style="width:24px;height:24px;"></i>
             </div>
             <div class="doc-card-meta">
-              <h3>Pesquisa de Mercado</h3>
-              <span class="doc-type">Pesquisa</span>
+              <h3>Desk Research &amp; Benchmarking</h3>
+              <span class="doc-type">Pesquisa — Maria Vitória</span>
             </div>
           </div>
           <div class="doc-card-body">
-            <p>Análise de soluções concorrentes, benchmarking de dispositivos IoT residenciais e oportunidades de diferenciação de mercado.</p>
+            <p>39% das casas conectadas terão 10+ dispositivos IoT até 2027 (Statista). 2,5h perdidas/dia em troca de contexto (McKinsey). 68% dos usuários abandonam wake words (Google). Lacuna entre dispositivos e UX fluida.</p>
           </div>
           <div class="doc-card-footer">
-            <span class="doc-badge">PDF</span>
-            <a href="#" class="doc-link">
+            <span class="doc-badge">Entregue 10/03</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
               Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
             </a>
           </div>
         </article>
 
-        <!-- Card 6 — Manual de Instalação -->
-        <article class="doc-card reveal delay-5" data-category="tecnico">
+        <!-- Card 2 — Matriz CSD -->
+        <article class="doc-card reveal delay-1" data-category="pesquisa">
           <div class="doc-card-header">
             <div class="doc-card-icon">
-              <i data-lucide="wrench" style="width:24px;height:24px;"></i>
+              <i data-lucide="columns" style="width:24px;height:24px;"></i>
             </div>
             <div class="doc-card-meta">
-              <h3>Manual de Instalação</h3>
-              <span class="doc-type">Tutorial Técnico</span>
+              <h3>Matriz CSD</h3>
+              <span class="doc-type">Pesquisa — Maria Vitória, Giovana &amp; Eduardo</span>
             </div>
           </div>
           <div class="doc-card-body">
-            <p>Guia passo a passo para instalação e configuração de sensores, controladores e integração com o dashboard Hemera.</p>
+            <p>Certezas, Suposições e Dúvidas do projeto: da CASACOR e experiências sensoriais à privacidade de dados sonoros e integração tecnológica invisível na arquitetura.</p>
           </div>
           <div class="doc-card-footer">
-            <span class="doc-badge">MD</span>
-            <a href="#" class="doc-link">
+            <span class="doc-badge">Entregue 11/03</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 3 — Mapa de Stakeholders -->
+        <article class="doc-card reveal delay-2" data-category="gestao">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="target" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Mapa de Stakeholders</h3>
+              <span class="doc-type">Gestão — Maria Luiza</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Mapeamento em 4 níveis: Núcleo (Morar), Internos (Grupo Hemera, Arquiteto, Patrocinadores, Orientadores Cesar), Externos (Casa Cor, Visitantes, Fornecedores HW) e Entorno (Gov/INMETRO, Público, Concorrentes).</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">Entregue 11/03</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 4 — Matriz RACI -->
+        <article class="doc-card reveal delay-3" data-category="gestao">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="table" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Matriz RACI</h3>
+              <span class="doc-type">Gestão — Giovana Castro</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Responsabilidades (Responsável, Aprovador, Consultado, Informado) para cada tarefa do projeto, distribuídas entre os 8 membros da equipe.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">Entregue 11/03</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 5 — Ciclo de Vida -->
+        <article class="doc-card reveal delay-4" data-category="planejamento">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="refresh-cw" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Ciclo de Vida do Projeto</h3>
+              <span class="doc-type">Planejamento — João Pedro</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>6 fases: Imersão → Definição → Ideação (fase atual) → Prototipação → Execução → Encerramento. Do desk research até a avaliação de impacto e lições aprendidas.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">Entregue 11/03</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 6 — Briefing do Projeto -->
+        <article class="doc-card reveal delay-5" data-category="planejamento">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="file-text" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Briefing do Projeto</h3>
+              <span class="doc-type">Planejamento — Igor Nicholai</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Documento com escopo, problema, proposta de valor, contexto da CASACOR e diretrizes do projeto Hemera para automação residencial com foco em experiência sensorial.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge">Entregue 10/03</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
               Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
             </a>
           </div>
@@ -1017,53 +1016,53 @@
       </p>
 
       <div class="timeline">
-        <!-- Sprint 1 -->
+        <!-- Task 1 -->
         <div class="timeline-item completed reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <span class="timeline-date">Sprint 1 — Jan 2026</span>
-            <h4>Levantamento de Requisitos</h4>
-            <p>Pesquisa de mercado, definição de stakeholders, requisitos funcionais e não-funcionais.</p>
+            <span class="timeline-date">10/03 — Briefing & Desk Research</span>
+            <h4>Imersão Inicial</h4>
+            <p>Redigir Briefing do Projeto (Igor) e Desk Research + Benchmarking (Maria Vitória). Entregue e aprovado.</p>
           </div>
         </div>
 
-        <!-- Sprint 2 -->
+        <!-- Task 2 -->
         <div class="timeline-item completed reveal delay-1">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <span class="timeline-date">Sprint 2 — Fev 2026</span>
-            <h4>Protótipo de Hardware</h4>
-            <p>Montagem do circuito de sensores, testes com ESP32 e integração MQTT inicial.</p>
+            <span class="timeline-date">11/03 — Artefatos de Gestão</span>
+            <h4>Matriz CSD, Stakeholders, RACI &amp; Ciclo de Vida</h4>
+            <p>Matriz CSD (Maria Vitória, Giovana, Eduardo), Mapa de Stakeholders (Maria Luiza), Matriz RACI (Giovana), Ciclo de Vida (João Pedro), Site (Saulo), Rituais Scrum (Maria Vitória).</p>
           </div>
         </div>
 
-        <!-- Sprint 3 — Ativo -->
-        <div class="timeline-item active reveal delay-2">
+        <!-- Task 3 — Ativo -->
+        <div class="timeline-item completed reveal delay-2">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <span class="timeline-date">Sprint 3 — Mar 2026</span>
-            <h4>Dashboard &amp; Interface Web</h4>
-            <p>Desenvolvimento do dashboard de monitoramento e interface de controle responsiva.</p>
+            <span class="timeline-date">12/03 — Kickoff &amp; Apresentação</span>
+            <h4>Cronograma, Drive &amp; Slides</h4>
+            <p>Cronograma do projeto (Erivan), Organização do Google Drive (Maria Vitória) e Slides da Apresentação (Eduardo). Todos entregues e aprovados.</p>
           </div>
         </div>
 
-        <!-- Sprint 4 -->
-        <div class="timeline-item upcoming reveal delay-3">
+        <!-- Task 4 -->
+        <div class="timeline-item active reveal delay-3">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <span class="timeline-date">Sprint 4 — Abr 2026</span>
-            <h4>Integração &amp; Testes</h4>
-            <p>Integração completa hardware-software, testes de carga e otimização de algoritmos.</p>
+            <span class="timeline-date">Fase Atual — Ideação</span>
+            <h4>Criar Possíveis Soluções</h4>
+            <p>Brainstorming, análise de impacto vs esforço e priorização de funcionalidades para o MVP do Hemera.</p>
           </div>
         </div>
 
-        <!-- Sprint 5 -->
+        <!-- Task 5 -->
         <div class="timeline-item upcoming reveal delay-4">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <span class="timeline-date">Sprint 5 — Mai 2026</span>
-            <h4>Entrega Final &amp; Apresentação</h4>
-            <p>Documentação final, apresentação do projeto, defesa e entrega do relatório completo.</p>
+            <span class="timeline-date">Próximas Fases</span>
+            <h4>Prototipação → Execução → Encerramento</h4>
+            <p>MVP Conceitual, testes iniciais, desenvolvimento, integração IoT, e avaliação final de resultados e lições aprendidas.</p>
           </div>
         </div>
       </div>
@@ -1074,7 +1073,7 @@
   <footer>
     <div class="container">
       <span class="footer-brand">HEMERA</span>
-      <p>Projeto de Automação Residencial — Eficiência Energética &amp; Gestão Inteligente</p>
+      <p>Projeto de Automação Residencial — Hub Unificado de Controle &amp; Produtividade</p>
       <ul class="footer-links">
         <li><a href="index.html">Início</a></li>
         <li><a href="documentacao.html">Documentação</a></li>

@@ -324,7 +324,7 @@
       opacity: 1;
     }
 
-    /* — Avatar (placeholder com iniciais) — */
+    /* — Avatar (placeholder com iniciais ou foto) — */
     .member-avatar {
       width: 90px;
       height: 90px;
@@ -340,6 +340,13 @@
       background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
       box-shadow: 0 6px 24px var(--color-shadow-warm);
       letter-spacing: 0.05em;
+      overflow: hidden;
+    }
+
+    .member-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .member-card h3 {
@@ -714,8 +721,8 @@
       <h1>Nossa Equipe</h1>
       <span class="accent-line"></span>
       <p>
-        Conheça os profissionais por trás do Projeto Hemera — engenheiros,
-        designers e pesquisadores unidos pela inovação em automação residencial.
+        Conheça os membros do Grupo Hemera — unidos pela inovação em
+        automação residencial com foco em experiência sensorial e tecnologia invisível.
       </p>
     </div>
   </section>
@@ -725,150 +732,127 @@
     <div class="container">
       <div class="team-grid">
 
-        <!-- Membro 1 -->
+        <!-- Membro 1 — Maria Vitória -->
         <article class="member-card reveal delay-1">
-          <div class="member-avatar">AB</div>
-          <h3>Ana Beatriz</h3>
-          <span class="member-role">Gerente de Projeto</span>
+          <div class="member-avatar"><img src="img/grupo/mavi.jpeg" alt="Maria Vitória"></div>
+          <h3>Maria Vitória</h3>
+          <span class="member-role">Pesquisa &amp; Organização</span>
           <p class="member-desc">
-            Responsável pelo planejamento, escopo e gestão de riscos.
-            Garante a entrega dentro do cronograma e dos padrões de qualidade.
+            Desk Research, Benchmarking, organização do Drive, definição dos rituais
+            Scrum e papéis. Contributora central em Matriz CSD.
           </p>
           <div class="member-skills">
-            <span class="skill-tag">PMBOK</span>
+            <span class="skill-tag">Desk Research</span>
             <span class="skill-tag">Scrum</span>
-            <span class="skill-tag">Liderança</span>
-          </div>
-          <div class="member-socials">
-            <a href="#" aria-label="LinkedIn">
-              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
-            </a>
-            <a href="#" aria-label="E-mail">
-              <i data-lucide="mail" style="width:16px;height:16px;"></i>
-            </a>
+            <span class="skill-tag">Drive</span>
           </div>
         </article>
 
-        <!-- Membro 2 -->
+        <!-- Membro 2 — Maria Luiza -->
         <article class="member-card reveal delay-2">
-          <div class="member-avatar">RM</div>
-          <h3>Rafael Mendes</h3>
-          <span class="member-role">Desenvolvedor Full Stack</span>
+          <div class="member-avatar"><img src="img/grupo/Luiza.jpeg" alt="Maria Luiza"></div>
+          <h3>Maria Luiza</h3>
+          <span class="member-role">Stakeholders &amp; Gestão</span>
           <p class="member-desc">
-            Arquitetura e desenvolvimento do dashboard web, API REST e
-            integração com os microcontroladores via protocolo MQTT.
+            Responsável pelo Mapa de Stakeholders (4 níveis concêntricos) e
+            aprovação do Drive e organização do projeto.
           </p>
           <div class="member-skills">
-            <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">MQTT</span>
-            <span class="skill-tag">REST API</span>
-          </div>
-          <div class="member-socials">
-            <a href="#" aria-label="GitHub">
-              <i data-lucide="github" style="width:16px;height:16px;"></i>
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
-            </a>
+            <span class="skill-tag">Stakeholders</span>
+            <span class="skill-tag">Gestão</span>
           </div>
         </article>
 
-        <!-- Membro 3 -->
+        <!-- Membro 3 — Eduardo Martiniano -->
         <article class="member-card reveal delay-3">
-          <div class="member-avatar">LC</div>
-          <h3>Lucas Carvalho</h3>
-          <span class="member-role">Engenheiro de Hardware</span>
+          <div class="member-avatar"><img src="img/grupo/Eduardo.png" alt="Eduardo Martiniano"></div>
+          <h3>Eduardo Martiniano</h3>
+          <span class="member-role">Apresentação &amp; Design</span>
           <p class="member-desc">
-            Projeto e prototipagem dos circuitos eletrônicos, seleção de
-            sensores IoT e programação do firmware em C/C++ para ESP32.
+            Responsável pelos slides da apresentação do kickoff. Consultado em
+            Stakeholders e no Google Site. Cocriador da Matriz CSD.
           </p>
           <div class="member-skills">
-            <span class="skill-tag">ESP32</span>
-            <span class="skill-tag">C/C++</span>
-            <span class="skill-tag">PCB Design</span>
-            <span class="skill-tag">IoT</span>
-          </div>
-          <div class="member-socials">
-            <a href="#" aria-label="GitHub">
-              <i data-lucide="github" style="width:16px;height:16px;"></i>
-            </a>
-            <a href="#" aria-label="E-mail">
-              <i data-lucide="mail" style="width:16px;height:16px;"></i>
-            </a>
+            <span class="skill-tag">Slides</span>
+            <span class="skill-tag">Design</span>
+            <span class="skill-tag">CSD</span>
           </div>
         </article>
 
-        <!-- Membro 4 -->
+        <!-- Membro 4 — Erivan Junior -->
         <article class="member-card reveal delay-4">
-          <div class="member-avatar">MS</div>
-          <h3>Mariana Silva</h3>
-          <span class="member-role">Designer UX/UI</span>
+          <div class="member-avatar"><img src="img/grupo/Erivan.png" alt="Erivan Junior"></div>
+          <h3>Erivan Junior</h3>
+          <span class="member-role">Cronograma &amp; Planejamento</span>
           <p class="member-desc">
-            Criação da identidade visual, wireframes, protótipos interativos e
-            design da interface de monitoramento energético.
+            Responsável pelo cronograma do projeto. Consultado na Matriz RACI/CSD
+            e aprovador do Desk Research.
           </p>
           <div class="member-skills">
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">UI Design</span>
-            <span class="skill-tag">Pesquisa UX</span>
-          </div>
-          <div class="member-socials">
-            <a href="#" aria-label="Behance">
-              <i data-lucide="palette" style="width:16px;height:16px;"></i>
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
-            </a>
+            <span class="skill-tag">Cronograma</span>
+            <span class="skill-tag">Planejamento</span>
           </div>
         </article>
 
-        <!-- Membro 5 -->
+        <!-- Membro 5 — Giovana Castro -->
         <article class="member-card reveal delay-5">
-          <div class="member-avatar">PO</div>
-          <h3>Pedro Oliveira</h3>
-          <span class="member-role">Engenheiro de Dados</span>
+          <div class="member-avatar"><img src="img/grupo/Gio.jpeg" alt="Giovana Castro"></div>
+          <h3>Giovana Castro</h3>
+          <span class="member-role">RACI &amp; Qualidade</span>
           <p class="member-desc">
-            Pipeline de dados, modelagem de consumo energético com Machine
-            Learning e análise preditiva para otimização de recursos.
+            Responsável pela Matriz RACI. Consultada no Drive e contributora
+            principal na Matriz CSD junto com Maria Vitória e Eduardo.
           </p>
           <div class="member-skills">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">ML</span>
-          </div>
-          <div class="member-socials">
-            <a href="#" aria-label="GitHub">
-              <i data-lucide="github" style="width:16px;height:16px;"></i>
-            </a>
-            <a href="#" aria-label="LinkedIn">
-              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
-            </a>
+            <span class="skill-tag">Matriz RACI</span>
+            <span class="skill-tag">CSD</span>
+            <span class="skill-tag">QA</span>
           </div>
         </article>
 
-        <!-- Membro 6 -->
+        <!-- Membro 6 — Igor Nicholai -->
         <article class="member-card reveal delay-6">
-          <div class="member-avatar">JF</div>
-          <h3>Juliana Ferreira</h3>
-          <span class="member-role">Pesquisadora / QA</span>
+          <div class="member-avatar"><img src="img/grupo/Igor.png" alt="Igor Nicholai"></div>
+          <h3>Igor Nicholai</h3>
+          <span class="member-role">Briefing &amp; Documentação</span>
           <p class="member-desc">
-            Pesquisa acadêmica em eficiência energética, redação técnica e
-            garantia de qualidade dos testes e entregáveis do projeto.
+            Responsável por redigir o Briefing do Projeto e aprovador do Desk
+            Research. Define escopo e diretrizes principais do Hemera.
           </p>
           <div class="member-skills">
-            <span class="skill-tag">Pesquisa</span>
-            <span class="skill-tag">QA</span>
+            <span class="skill-tag">Briefing</span>
             <span class="skill-tag">Documentação</span>
           </div>
-          <div class="member-socials">
-            <a href="#" aria-label="LinkedIn">
-              <i data-lucide="linkedin" style="width:16px;height:16px;"></i>
-            </a>
-            <a href="#" aria-label="E-mail">
-              <i data-lucide="mail" style="width:16px;height:16px;"></i>
-            </a>
+        </article>
+
+        <!-- Membro 7 — João Pedro -->
+        <article class="member-card reveal delay-1">
+          <div class="member-avatar"><img src="img/grupo/joao.jpeg" alt="João Pedro"></div>
+          <h3>João Pedro</h3>
+          <span class="member-role">Ciclo de Vida &amp; Metodologia</span>
+          <p class="member-desc">
+            Responsável pelo Ciclo de Vida do Projeto (6 fases: Imersão a Encerramento).
+            Aprovador dos slides e informado na gestão de Stakeholders.
+          </p>
+          <div class="member-skills">
+            <span class="skill-tag">Ciclo de Vida</span>
+            <span class="skill-tag">Metodologia</span>
+          </div>
+        </article>
+
+        <!-- Membro 8 — Saulo Rodrigues -->
+        <article class="member-card reveal delay-2">
+          <div class="member-avatar"><img src="img/grupo/Saulo.jpeg" alt="Saulo Rodrigues"></div>
+          <h3>Saulo Rodrigues</h3>
+          <span class="member-role">Site &amp; Tecnologia</span>
+          <p class="member-desc">
+            Responsável pela configuração e design do Google Site do projeto.
+            Consultado no Briefing e aprovador da Matriz RACI/CSD.
+          </p>
+          <div class="member-skills">
+            <span class="skill-tag">Web Design</span>
+            <span class="skill-tag">Google Site</span>
+            <span class="skill-tag">Tech</span>
           </div>
         </article>
 
@@ -882,68 +866,68 @@
       <h2 class="section-title reveal">Áreas de Atuação</h2>
       <span class="accent-line reveal"></span>
       <p class="section-subtitle reveal">
-        Como organizamos as responsabilidades para garantir entregas eficientes.
+        Como organizamos as responsabilidades com base na Matriz RACI do projeto.
       </p>
 
       <div class="roles-grid">
 
         <div class="role-card reveal delay-1">
           <div class="role-icon">
-            <i data-lucide="layout-dashboard" style="width:22px;height:22px;"></i>
+            <i data-lucide="search" style="width:22px;height:22px;"></i>
           </div>
           <div class="role-info">
-            <h4>Gestão &amp; Planejamento</h4>
-            <p>Cronograma, escopo, riscos e comunicação com stakeholders.</p>
+            <h4>Pesquisa &amp; Imersão</h4>
+            <p>Desk Research, benchmarking, análise de mercado e validação de problemas.</p>
           </div>
         </div>
 
         <div class="role-card reveal delay-2">
           <div class="role-icon">
-            <i data-lucide="code-2" style="width:22px;height:22px;"></i>
+            <i data-lucide="target" style="width:22px;height:22px;"></i>
           </div>
           <div class="role-info">
-            <h4>Desenvolvimento Software</h4>
-            <p>Dashboard, API, integração MQTT e interface web responsiva.</p>
+            <h4>Gestão de Stakeholders</h4>
+            <p>Mapeamento de partes interessadas, relacionamento com CASACOR, orientadores e patrocinadores.</p>
           </div>
         </div>
 
         <div class="role-card reveal delay-3">
           <div class="role-icon">
-            <i data-lucide="cpu" style="width:22px;height:22px;"></i>
+            <i data-lucide="layout-dashboard" style="width:22px;height:22px;"></i>
           </div>
           <div class="role-info">
-            <h4>Engenharia de Hardware</h4>
-            <p>Circuitos eletrônicos, sensores IoT, firmware e prototipagem.</p>
+            <h4>Planejamento &amp; Cronograma</h4>
+            <p>Ciclo de vida, cronograma, Matriz RACI e definição de rituais Scrum.</p>
           </div>
         </div>
 
         <div class="role-card reveal delay-4">
           <div class="role-icon">
-            <i data-lucide="pen-tool" style="width:22px;height:22px;"></i>
+            <i data-lucide="file-text" style="width:22px;height:22px;"></i>
           </div>
           <div class="role-info">
-            <h4>Design &amp; Experiência</h4>
-            <p>Identidade visual, UX research, prototipagem e testes de usabilidade.</p>
+            <h4>Documentação &amp; Briefing</h4>
+            <p>Redação do briefing, escopo do projeto, Matriz CSD e registro de artefatos.</p>
           </div>
         </div>
 
         <div class="role-card reveal delay-5">
           <div class="role-icon">
-            <i data-lucide="bar-chart-3" style="width:22px;height:22px;"></i>
+            <i data-lucide="presentation" style="width:22px;height:22px;"></i>
           </div>
           <div class="role-info">
-            <h4>Dados &amp; Machine Learning</h4>
-            <p>Análise preditiva, pipelines de dados e modelagem de consumo.</p>
+            <h4>Apresentação &amp; Comunicação</h4>
+            <p>Slides do kickoff, pitches, organização visual e do Google Drive.</p>
           </div>
         </div>
 
         <div class="role-card reveal delay-6">
           <div class="role-icon">
-            <i data-lucide="file-check" style="width:22px;height:22px;"></i>
+            <i data-lucide="code-2" style="width:22px;height:22px;"></i>
           </div>
           <div class="role-info">
-            <h4>Pesquisa &amp; Qualidade</h4>
-            <p>Pesquisa acadêmica, testes de qualidade e documentação técnica.</p>
+            <h4>Site &amp; Tecnologia</h4>
+            <p>Configuração e design do Google Site, integração tecnológica e ferramentas digitais.</p>
           </div>
         </div>
 
@@ -957,17 +941,17 @@
       <div class="contact-card reveal">
         <h2>Quer saber mais?</h2>
         <p>
-          Entre em contato com a equipe Hemera para dúvidas, parcerias
-          ou colaborações acadêmicas.
+          Acesse a documentação completa do projeto ou explore o
+          Google Drive com todos os artefatos do kickoff.
         </p>
         <div class="contact-links">
-          <a href="#" class="contact-btn">
-            <i data-lucide="mail" style="width:18px;height:18px;"></i>
-            E-mail da Equipe
+          <a href="documentacao.html" class="contact-btn">
+            <i data-lucide="file-text" style="width:18px;height:18px;"></i>
+            Documentação
           </a>
-          <a href="#" class="contact-btn">
-            <i data-lucide="message-circle" style="width:18px;height:18px;"></i>
-            Canal no Discord
+          <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="contact-btn">
+            <i data-lucide="folder" style="width:18px;height:18px;"></i>
+            Google Drive
           </a>
         </div>
       </div>
@@ -978,7 +962,7 @@
   <footer>
     <div class="container">
       <span class="footer-brand">HEMERA</span>
-      <p>Projeto de Automação Residencial — Eficiência Energética &amp; Gestão Inteligente</p>
+      <p>Projeto de Automação Residencial — Hub Unificado de Controle &amp; Produtividade</p>
       <ul class="footer-links">
         <li><a href="index.html">Início</a></li>
         <li><a href="documentacao.html">Documentação</a></li>
