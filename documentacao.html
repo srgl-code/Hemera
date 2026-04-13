@@ -20,6 +20,15 @@
   <!-- ==================== Lucide Icons ==================== -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- ==================== GSAP + ScrollTrigger ==================== -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- ==================== Swup + Plugins ==================== -->
+  <script src="https://unpkg.com/swup@4"></script>
+  <script src="https://unpkg.com/@swup/head-plugin@2"></script>
+  <script src="https://unpkg.com/@swup/scripts-plugin@2"></script>
+
   <style>
     /* ==========================================================
        1. CSS CUSTOM PROPERTIES (Design Tokens)
@@ -70,6 +79,34 @@
       line-height: 1.7;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Custom scrollbar — minimalist */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(194, 122, 83, 0.3);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(194, 122, 83, 0.5);
+    }
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(194, 122, 83, 0.3) transparent;
+    }
+
+    /* Swup page transitions */
+    html.is-changing .transition-fade {
+      transition: opacity 0.35s ease;
+      opacity: 1;
+    }
+    html.is-animating .transition-fade {
+      opacity: 0;
     }
 
     img { max-width: 100%; height: auto; display: block; }
@@ -138,13 +175,13 @@
       display: block;
       width: 60px;
       height: 3px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+      background: linear-gradient(90deg, var(--color-primary-light), var(--color-accent));
       border-radius: 3px;
       margin: var(--space-sm) auto var(--space-md);
     }
 
     /* ==========================================================
-       5. DECORATIVE BACKGROUND SHAPES
+       5b. DECORATIVE BACKGROUND SHAPES
        ========================================================== */
     .bg-shapes {
       position: fixed;
@@ -264,15 +301,20 @@
        7. PAGE HEADER (Banner interno)
        ========================================================== */
     .page-header {
-      padding: var(--space-xl) var(--space-md) var(--space-lg);
+      padding: var(--space-2xl) var(--space-md) var(--space-xl);
       text-align: center;
       animation: fadeInUp 0.7s ease-out both;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .page-header h1 {
       font-size: clamp(2rem, 5vw, 3rem);
       letter-spacing: 0.06em;
       margin-bottom: var(--space-xs);
+      color: var(--color-text);
     }
 
     .page-header p {
@@ -347,6 +389,15 @@
     .doc-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 16px 48px var(--color-shadow), 0 4px 16px var(--color-shadow-warm);
+      border-color: rgba(194, 122, 83, 0.35);
+    }
+
+    .doc-card-icon {
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .doc-card:hover .doc-card-icon {
+      transform: scale(1.1) rotate(5deg);
     }
 
     .doc-card-header {
@@ -828,6 +879,8 @@
     <a href="equipe.html" onclick="toggleMenu()">Equipe</a>
   </div>
 
+  <main id="swup" class="transition-fade">
+
   <!-- ==================== PAGE HEADER ==================== -->
   <section class="page-header">
     <div class="container">
@@ -1194,6 +1247,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ==================== FOOTER ==================== -->
   <footer>
     <div class="container">
@@ -1209,7 +1264,10 @@
   </footer>
 
   <!-- ==================== SCRIPTS ==================== -->
-  <script>
+  <script data-swup-reload-script>
+    /* — Registrar GSAP ScrollTrigger — */
+    gsap.registerPlugin(ScrollTrigger);
+
     /* — Inicializar ícones Lucide — */
     lucide.createIcons();
 
@@ -1220,13 +1278,11 @@
 
     /* — Document Category Filter — */
     function filterDocs(category, btn) {
-      /* Atualiza tab ativa */
-      document.querySelectorAll('.doc-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.doc-tab').forEach(function (t) { t.classList.remove('active'); });
       btn.classList.add('active');
 
-      /* Filtra cards */
-      const cards = document.querySelectorAll('.doc-card');
-      cards.forEach(card => {
+      var cards = document.querySelectorAll('.doc-card');
+      cards.forEach(function (card) {
         if (category === 'all' || card.dataset.category === category) {
           card.style.display = '';
           card.style.animation = 'fadeInUp 0.4s ease-out both';
@@ -1237,17 +1293,43 @@
     }
 
     /* — Scroll Reveal — */
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    var revealElements = document.querySelectorAll('.reveal');
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           revealObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(function (el) { revealObserver.observe(el); });
+  </script>
 
-    revealElements.forEach(el => revealObserver.observe(el));
+  <!-- ==================== SWUP INIT ==================== -->
+  <script data-swup-ignore-script>
+    if (!window._swupInstance) {
+      var swup = new Swup({
+        animateHistoryBrowsing: true,
+        containers: ['#swup'],
+        plugins: [
+          new SwupHeadPlugin(),
+          new SwupScriptsPlugin({ head: false, body: true, optin: true })
+        ]
+      });
+
+      swup.hooks.on('page:view', function () {
+        var path = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a').forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === path);
+        });
+      });
+
+      swup.hooks.before('content:replace', function () {
+        ScrollTrigger.getAll().forEach(function (t) { t.kill(); });
+      });
+
+      window._swupInstance = swup;
+    }
   </script>
 
 </body>

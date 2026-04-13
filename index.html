@@ -24,6 +24,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
+  <!-- ==================== Swup + Plugins ==================== -->
+  <script src="https://unpkg.com/swup@4"></script>
+  <script src="https://unpkg.com/@swup/head-plugin@2"></script>
+  <script src="https://unpkg.com/@swup/scripts-plugin@2"></script>
+
   <style>
     /* ==========================================================
        1. CSS CUSTOM PROPERTIES (Design Tokens)
@@ -76,6 +81,7 @@
     html {
       font-size: 16px;
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -85,6 +91,34 @@
       line-height: 1.7;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Custom scrollbar — minimalist */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(194, 122, 83, 0.3);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(194, 122, 83, 0.5);
+    }
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(194, 122, 83, 0.3) transparent;
+    }
+
+    /* Swup page transitions */
+    html.is-changing .transition-fade {
+      transition: opacity 0.35s ease;
+      opacity: 1;
+    }
+    html.is-animating .transition-fade {
+      opacity: 0;
     }
 
     img { max-width: 100%; height: auto; display: block; }
@@ -185,7 +219,62 @@
     }
 
     /* ==========================================================
-       5. DECORATIVE BACKGROUND SHAPES
+       5a. HERO VIDEO (inside pinned hero)
+       ========================================================== */
+    .hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 75% center;
+      z-index: 0;
+      transform: translateZ(0);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to right,
+        var(--color-bg) 0%,
+        var(--color-bg) 15%,
+        rgba(246, 244, 240, 0.85) 25%,
+        rgba(246, 244, 240, 0) 50%
+      );
+      pointer-events: none;
+    }
+
+    /* Subtle golden accents on the left panel */
+    .hero-overlay::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 5%;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232, 196, 160, 0.25), transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+
+    .hero-overlay::after {
+      content: '';
+      position: absolute;
+      bottom: 20%;
+      left: 12%;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(194, 122, 83, 0.15), transparent 70%);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+
+    /* ==========================================================
+       5b. DECORATIVE BACKGROUND SHAPES
        ========================================================== */
     .bg-shapes {
       position: fixed;
@@ -200,6 +289,8 @@
       border-radius: var(--radius-full);
       filter: blur(80px);
       opacity: 0.35;
+      transform: translateZ(0);
+      will-change: transform;
     }
 
     .bg-shapes .shape-1 {
@@ -312,44 +403,24 @@
     }
 
     /* ==========================================================
-       7. HERO SECTION
+       7. HERO SECTION (pinned while video scrubs)
        ========================================================== */
     .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      min-height: calc(100vh - 72px);
-      text-align: center;
-      padding: var(--space-xl) var(--space-md);
-      position: relative;
+      justify-content: flex-start;
+      text-align: left;
       overflow: hidden;
     }
 
-    /* — Decorative background art (logo large.png) — */
-    .hero-bg-art {
-      position: absolute;
-      width: clamp(380px, 55vw, 700px);
-      height: auto;
-      opacity: 0.1;
-      pointer-events: none;
-      user-select: none;
-      z-index: 0;
-      filter: blur(1px);
-      right: -5%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
     .hero-content {
-      max-width: 800px;
+      max-width: 550px;
       position: relative;
-      z-index: 1;
-    }
-
-    .hero-logo {
-      width: clamp(100px, 16vw, 160px);
-      margin: 0 auto var(--space-lg);
-      filter: drop-shadow(0 12px 32px var(--color-shadow-warm));
+      z-index: 2;
+      padding-left: clamp(var(--space-lg), 8vw, 120px);
     }
 
     .hero h1 {
@@ -361,6 +432,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-shadow: none;
     }
 
     .hero .tagline {
@@ -368,15 +440,25 @@
       color: var(--color-text-light);
       font-weight: 300;
       margin-bottom: var(--space-lg);
-      max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
+      max-width: 480px;
+    }
+
+    /* Word-by-word scroll reveal */
+    .tagline .word {
+      display: inline-block;
+      opacity: 0.25;
+      transition: opacity 0.3s ease;
+      margin-right: 0.25em;
+    }
+
+    .tagline .word.revealed {
+      opacity: 1;
     }
 
     .hero-buttons {
       display: flex;
       gap: var(--space-sm);
-      justify-content: center;
+      justify-content: flex-start;
       flex-wrap: wrap;
     }
 
@@ -403,6 +485,7 @@
       background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
       color: var(--color-white);
       box-shadow: 0 4px 20px var(--color-shadow-warm);
+      backdrop-filter: blur(8px);
     }
 
     .btn-primary:hover {
@@ -462,6 +545,7 @@
     .feature-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 16px 48px var(--color-shadow), 0 4px 16px var(--color-shadow-warm);
+      border-color: rgba(194, 122, 83, 0.35);
     }
 
     .feature-card:hover::before {
@@ -477,6 +561,12 @@
       background: linear-gradient(135deg, rgba(194,122,83,0.12), rgba(217,155,120,0.08));
       color: var(--color-primary);
       margin-bottom: var(--space-md);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 4px 20px rgba(194, 122, 83, 0.2);
     }
 
     .feature-icon i {
@@ -742,8 +832,19 @@
       }
 
       .hero {
-        min-height: auto;
+        min-height: 100vh;
+        justify-content: center;
+        text-align: center;
         padding: var(--space-xl) var(--space-sm);
+      }
+
+      .hero-content {
+        padding-left: 0;
+        max-width: 100%;
+      }
+
+      .hero-buttons {
+        justify-content: center;
       }
 
       .hero h1 {
@@ -768,6 +869,24 @@
         width: 100%;
         max-width: 300px;
         justify-content: center;
+      }
+    }
+
+    /* — Mobile: simplify video for performance — */
+    @media (max-width: 768px) {
+      .hero video {
+        display: none;
+      }
+      .hero-overlay {
+        background: linear-gradient(
+          to bottom,
+          rgba(246, 244, 240, 0.85) 0%,
+          rgba(246, 244, 240, 0.6) 50%,
+          rgba(246, 244, 240, 0) 100%
+        );
+      }
+      .hero {
+        background: linear-gradient(135deg, var(--color-text), #1a2e30);
       }
     }
 
@@ -872,6 +991,8 @@
 
 <body>
 
+
+
   <!-- ==================== PRELOADER ==================== -->
   <div class="preloader" id="preloader">
     <img src="img/logosvg.svg" alt="Carregando Hemera" class="preloader-logo" />
@@ -924,18 +1045,19 @@
     <a href="equipe.html" onclick="toggleMenu()">Equipe</a>
   </div>
 
-  <!-- ==================== HERO SECTION ==================== -->
-  <section class="hero" aria-label="Introdução ao Projeto Hemera">
-    <!-- Background decorativo: cristal geométrico -->
-    <img src="img/logo%20large.png" alt="" class="hero-bg-art" aria-hidden="true" />
+  <main id="swup" class="transition-fade">
+
+  <!-- ==================== HERO SECTION (pinned video scroll) ==================== -->
+  <section class="hero" id="heroPin" aria-label="Introdução ao Projeto Hemera">
+    <video id="heroVideo" muted playsinline preload="auto">
+      <source src="vid/hero-video-scrub.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <!-- Logo SVG -->
-      <img src="img/logosvg.svg" alt="Hemera — Logo do Projeto" class="hero-logo" />
-
       <h1>PROJETO HEMERA</h1>
 
-      <p class="tagline">
+      <p class="tagline" id="taglineReveal">
         Uma plataforma que unifica o controle da casa e a produtividade pessoal
         em um único hub de processamento contínuo.
       </p>
@@ -1100,6 +1222,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ==================== FOOTER ==================== -->
   <footer>
     <div class="container">
@@ -1115,7 +1239,7 @@
   </footer>
 
   <!-- ==================== SCRIPTS ==================== -->
-  <script>
+  <script data-swup-reload-script>
     /* — Registrar GSAP ScrollTrigger — */
     gsap.registerPlugin(ScrollTrigger);
 
@@ -1128,163 +1252,130 @@
     }
 
     /* =========================================================
-       GSAP — Estado inicial: esconder tudo que será animado
+       Detectar se é navegação Swup ou primeiro carregamento
        ========================================================= */
-    gsap.set('header', { autoAlpha: 0, y: -40 });
-    gsap.set('.hero-bg-art', { autoAlpha: 0, scale: 1.15, rotation: -8 });
-    gsap.set('.hero-logo', { autoAlpha: 0, scale: 0.5 });
-    gsap.set('.hero h1', { autoAlpha: 0, y: 40 });
-    gsap.set('.hero .tagline', { autoAlpha: 0, y: 30 });
-    gsap.set('.hero-buttons .btn', { autoAlpha: 0, y: 20 });
+    if (window._swupInstance) {
+      /* — Navegação via Swup: pular preloader, iniciar direto — */
+      initScrollTrigger();
+    } else {
+      /* — Primeiro carregamento: mostrar preloader — */
+      gsap.set('header', { autoAlpha: 0, y: -40 });
 
-    /* =========================================================
-       GSAP — PRELOADER → HERO (transição contínua)
-       ========================================================= */
-    var preloader     = document.getElementById('preloader');
-    var preloaderLogo = document.querySelector('.preloader-logo');
-    var preloaderBrand= document.querySelector('.preloader-brand');
-    var preloaderSpin = document.querySelector('.preloader-spinner');
-    var preloaderBar  = document.getElementById('preloaderBarFill');
+      var preloader     = document.getElementById('preloader');
+      var preloaderLogo = document.querySelector('.preloader-logo');
+      var preloaderBrand= document.querySelector('.preloader-brand');
+      var preloaderSpin = document.querySelector('.preloader-spinner');
+      var preloaderBar  = document.getElementById('preloaderBarFill');
 
-    /* — Animação de entrada do preloader — */
-    var preloaderEntrance = gsap.timeline();
-    preloaderEntrance
-      .from(preloaderLogo, { scale: 0.6, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.4)' })
-      .from(preloaderBrand, { autoAlpha: 0, y: 12, duration: 0.4, ease: 'power2.out' }, '-=0.2')
-      .from(preloaderSpin, { autoAlpha: 0, scale: 0, duration: 0.3, ease: 'back.out(2)' }, '-=0.1')
-      .to(preloaderBar, { width: '100%', duration: 1.2, ease: 'power1.inOut' }, '-=0.2');
+      var preloaderEntrance = gsap.timeline();
+      preloaderEntrance
+        .from(preloaderLogo, { scale: 0.6, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.4)' })
+        .from(preloaderBrand, { autoAlpha: 0, y: 12, duration: 0.4, ease: 'power2.out' }, '-=0.2')
+        .from(preloaderSpin, { autoAlpha: 0, scale: 0, duration: 0.3, ease: 'back.out(2)' }, '-=0.1')
+        .to(preloaderBar, { width: '100%', duration: 1.2, ease: 'power1.inOut' }, '-=0.2');
 
-    /* — Quando a página carrega: transição preloader → hero — */
-    window.addEventListener('load', function () {
-      var heroLogo = document.querySelector('.hero-logo');
+      window.addEventListener('load', function () {
+        var exitTL = gsap.timeline({
+          delay: 0.3,
+          onComplete: function () {
+            preloader.style.display = 'none';
+            initScrollTrigger();
+            requestAnimationFrame(function () {
+              ScrollTrigger.refresh();
+            });
+          }
+        });
 
-      /* Timeline principal da transição */
-      var exitTL = gsap.timeline({
-        delay: 0.3,
-        onComplete: function () {
-          preloader.style.display = 'none';
-          initScrollTrigger();
-          /* Recalcular posições de trigger após preloader sumir */
-          requestAnimationFrame(function () {
-            ScrollTrigger.refresh();
-          });
-        }
+        exitTL
+          .to([preloaderSpin, preloaderSpin.parentElement.querySelector('.preloader-bar')], {
+            autoAlpha: 0,
+            scale: 0.6,
+            duration: 0.35,
+            ease: 'power2.in'
+          })
+          .to(preloaderBrand, {
+            autoAlpha: 0,
+            y: -20,
+            duration: 0.3,
+            ease: 'power2.in'
+          }, '-=0.15')
+          .to(preloaderLogo, {
+            scale: 1.2,
+            duration: 0.3,
+            ease: 'power2.out'
+          })
+          .to(preloaderLogo, {
+            scale: 0.55,
+            y: -80,
+            autoAlpha: 0,
+            duration: 0.55,
+            ease: 'power3.inOut'
+          })
+          .to(preloader, {
+            autoAlpha: 0,
+            duration: 0.45,
+            ease: 'power2.inOut'
+          }, '-=0.45')
+          .to('header', {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.55,
+            ease: 'power3.out'
+          }, '-=0.3');
       });
-
-      exitTL
-        /* 1 — Esconder spinner e barra */
-        .to([preloaderSpin, preloaderSpin.parentElement.querySelector('.preloader-bar')], {
-          autoAlpha: 0,
-          scale: 0.6,
-          duration: 0.35,
-          ease: 'power2.in'
-        })
-
-        /* 2 — Texto "HEMERA" sobe e desaparece */
-        .to(preloaderBrand, {
-          autoAlpha: 0,
-          y: -20,
-          duration: 0.3,
-          ease: 'power2.in'
-        }, '-=0.15')
-
-        /* 3 — Logo do preloader: pulsa, depois encolhe e desloca para cima */
-        .to(preloaderLogo, {
-          scale: 1.2,
-          duration: 0.3,
-          ease: 'power2.out'
-        })
-        .to(preloaderLogo, {
-          scale: 0.55,
-          y: -80,
-          autoAlpha: 0,
-          duration: 0.55,
-          ease: 'power3.inOut'
-        })
-
-        /* 4 — Fundo do preloader desvanece (revela a home atrás) */
-        .to(preloader, {
-          autoAlpha: 0,
-          duration: 0.45,
-          ease: 'power2.inOut'
-        }, '-=0.45')
-
-        /* 5 — Header desliza de cima */
-        .to('header', {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.55,
-          ease: 'power3.out'
-        }, '-=0.3')
-
-        /* 5.5 — Background art aparece suavemente e corrige rotação */
-        .to('.hero-bg-art', {
-          autoAlpha: 0.1,
-          scale: 1,
-          rotation: 0,
-          duration: 1.4,
-          ease: 'power2.out'
-        }, '-=0.5')
-
-        /* 6 — Logo hero surge (escala + opacidade) — "emenda" com o logo do preloader */
-        .to('.hero-logo', {
-          autoAlpha: 1,
-          scale: 1,
-          duration: 0.7,
-          ease: 'back.out(1.4)'
-        }, '-=0.45')
-
-        /* 7 — Título */
-        .to('.hero h1', {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.55,
-          ease: 'power3.out'
-        }, '-=0.35')
-
-        /* 8 — Tagline */
-        .to('.hero .tagline', {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.5,
-          ease: 'power3.out'
-        }, '-=0.25')
-
-        /* 9 — Botões com stagger */
-        .to('.hero-buttons .btn', {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.45,
-          stagger: 0.15,
-          ease: 'power3.out'
-        }, '-=0.2');
-
-      /* Logo flutuando continuamente após entrada */
-      gsap.to('.hero-logo', {
-        y: -8,
-        duration: 2,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-        delay: 3.5
-      });
-
-      /* Background art flutuando lentamente */
-      gsap.to('.hero-bg-art', {
-        y: -20,
-        rotation: 3,
-        duration: 6,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-        delay: 2
-      });
-    });
+    }
 
     /* =========================================================
        GSAP — SCROLLTRIGGER (chamado após preloader terminar)
        ========================================================= */
     function initScrollTrigger() {
+
+      /* --- PINNED HERO + SCROLL-DRIVEN VIDEO --- */
+      var video = document.getElementById('heroVideo');
+      var heroContent = document.querySelector('.hero-content');
+
+      /* Hero content visible from the start (video is background) */
+      gsap.set(heroContent, { autoAlpha: 1, y: 0 });
+
+      function startPinnedVideo() {
+        /* Smooth interpolation for video seeking */
+        var targetTime = 0;
+        var currentTime = 0;
+
+        function smoothSeek() {
+          var diff = targetTime - currentTime;
+          if (Math.abs(diff) > 0.01) {
+            currentTime += diff * 0.15;
+            video.currentTime = currentTime;
+          }
+          requestAnimationFrame(smoothSeek);
+        }
+        requestAnimationFrame(smoothSeek);
+
+        /* Pin the hero and scrub the video */
+        ScrollTrigger.create({
+          trigger: '#heroPin',
+          start: 'top top',
+          end: '+=300%',
+          pin: true,
+          scrub: true,
+          onUpdate: function (self) {
+            if (video.duration) {
+              targetTime = self.progress * video.duration;
+            }
+          }
+        });
+
+        ScrollTrigger.refresh();
+      }
+
+      if (video && video.readyState >= 1) {
+        startPinnedVideo();
+      } else if (video) {
+        video.addEventListener('loadedmetadata', function () {
+          startPinnedVideo();
+        });
+      }
 
       /* --- Pilares / Features --- */
       gsap.fromTo('.features .section-title',
@@ -1346,19 +1437,48 @@
 
       /* --- Background shapes parallax suave --- */
       gsap.to('.shape-1', {
-        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 },
-        y: -180, ease: 'none'
+        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1 },
+        y: -220, x: -40, ease: 'none'
       });
 
       gsap.to('.shape-2', {
-        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 },
-        y: 120, ease: 'none'
+        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 },
+        y: 160, x: 30, ease: 'none'
       });
 
       gsap.to('.shape-3', {
         scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 1.5 },
-        y: -80, x: 60, ease: 'none'
+        y: -100, x: 80, rotation: 15, ease: 'none'
       });
+    }
+  </script>
+
+  <!-- ==================== SWUP INIT ==================== -->
+  <script data-swup-ignore-script>
+    if (!window._swupInstance) {
+      var swup = new Swup({
+        animateHistoryBrowsing: true,
+        containers: ['#swup'],
+        plugins: [
+          new SwupHeadPlugin(),
+          new SwupScriptsPlugin({ head: false, body: true, optin: true })
+        ]
+      });
+
+      /* — Atualizar link ativo no nav após transição — */
+      swup.hooks.on('page:view', function () {
+        var path = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('nav a').forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === path);
+        });
+      });
+
+      /* — Limpar ScrollTrigger antes de trocar conteúdo — */
+      swup.hooks.before('content:replace', function () {
+        ScrollTrigger.getAll().forEach(function (t) { t.kill(); });
+      });
+
+      window._swupInstance = swup;
     }
   </script>
 
