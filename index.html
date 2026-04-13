@@ -93,23 +93,24 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Custom scrollbar — minimalist */
+    /* Custom scrollbar — minimalist & transparent */
     ::-webkit-scrollbar {
       width: 6px;
+      background: transparent;
     }
     ::-webkit-scrollbar-track {
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(194, 122, 83, 0.3);
+      background: rgba(194, 122, 83, 0.25);
       border-radius: 3px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(194, 122, 83, 0.5);
+      background: rgba(194, 122, 83, 0.45);
     }
     html {
       scrollbar-width: thin;
-      scrollbar-color: rgba(194, 122, 83, 0.3) transparent;
+      scrollbar-color: rgba(194, 122, 83, 0.25) transparent;
     }
 
     /* Swup page transitions */
@@ -236,13 +237,22 @@
       position: absolute;
       inset: 0;
       z-index: 1;
-      background: linear-gradient(
-        to right,
-        var(--color-bg) 0%,
-        var(--color-bg) 15%,
-        rgba(246, 244, 240, 0.85) 25%,
-        rgba(246, 244, 240, 0) 50%
-      );
+      background:
+        /* Left-to-right text panel */
+        linear-gradient(
+          to right,
+          var(--color-bg) 0%,
+          var(--color-bg) 15%,
+          rgba(246, 244, 240, 0.85) 25%,
+          rgba(246, 244, 240, 0) 50%
+        ),
+        /* Bottom fade into page background */
+        linear-gradient(
+          to top,
+          var(--color-bg) 0%,
+          rgba(246, 244, 240, 0.6) 8%,
+          transparent 22%
+        );
       pointer-events: none;
     }
 
