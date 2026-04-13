@@ -1164,6 +1164,10 @@
         onComplete: function () {
           preloader.style.display = 'none';
           initScrollTrigger();
+          /* Recalcular posições de trigger após preloader sumir */
+          requestAnimationFrame(function () {
+            ScrollTrigger.refresh();
+          });
         }
       });
 
