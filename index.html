@@ -1280,8 +1280,8 @@
       document.getElementById('mobileMenu').classList.toggle('open');
     }
 
-    /* — Sair imediatamente se não estamos na página inicial — */
-    if (!document.querySelector('#heroPin')) return;
+    /* — Executar apenas na página inicial — */
+    if (document.querySelector('#heroPin')) (function() {
 
     /* =========================================================
        Detectar se é navegação Swup ou primeiro carregamento
@@ -1483,6 +1483,7 @@
         y: -100, x: 80, rotation: 15, ease: 'none'
       });
     }
+    })(); /* end page guard */
   </script>
 
   <!-- ==================== SWUP INIT ==================== -->

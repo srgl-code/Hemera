@@ -1741,8 +1741,8 @@
       document.getElementById('mobileMenu').classList.toggle('open');
     }
 
-    /* — Sair imediatamente se não estamos na página Documentação — */
-    if (!document.querySelector('.doc-tabs')) return;
+    /* — Executar apenas na página Documentação — */
+    if (document.querySelector('.doc-tabs')) (function() {
 
     /* — Document Category Filter — */
     function filterDocs(category, btn) {
@@ -1780,6 +1780,7 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     revealElements.forEach(function (el) { revealObserver.observe(el); });
+    })(); /* end page guard */
   </script>
 
   <!-- ==================== SWUP INIT ==================== -->
