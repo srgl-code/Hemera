@@ -1741,7 +1741,7 @@
     /* — Document Category Filter — */
     function filterDocs(category, btn) {
       document.querySelectorAll('.doc-tab').forEach(function (t) { t.classList.remove('active'); });
-      btn.classList.add('active');
+      if (btn) btn.classList.add('active');
 
       document.querySelectorAll('.doc-card').forEach(function (card) {
         var cats = (card.dataset.category || '').split(' ');
@@ -1754,12 +1754,14 @@
       });
     }
 
-    /* — Wire up tab clicks via event delegation (safe with Swup) — */
-    document.querySelectorAll('.doc-tab[data-filter]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        filterDocs(btn.dataset.filter, btn);
-      });
-    });
+    /* — Event delegation on document — funciona independente de timing do Swup — */
+    document.removeEventListener('click', window._tabClickHandler);
+    window._tabClickHandler = function(e) {
+      var btn = e.target.closest('.doc-tab[data-filter]');
+      if (!btn) return;
+      filterDocs(btn.dataset.filter, btn);
+    };
+    document.addEventListener('click', window._tabClickHandler);
 
     /* — Scroll Reveal — */
     var revealElements = document.querySelectorAll('.reveal');
