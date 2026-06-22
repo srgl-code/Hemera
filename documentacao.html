@@ -902,13 +902,13 @@
     <div class="container">
 
       <div class="doc-tabs">
-        <button class="doc-tab active" onclick="filterDocs('all', this)">Todos</button>
-        <button class="doc-tab" onclick="filterDocs('sr2', this)">SR2 ✦</button>
-        <button class="doc-tab" onclick="filterDocs('pesquisa', this)">Pesquisa</button>
-        <button class="doc-tab" onclick="filterDocs('gestao', this)">Gestão</button>
-        <button class="doc-tab" onclick="filterDocs('planejamento', this)">Planejamento</button>
-        <button class="doc-tab" onclick="filterDocs('design', this)">Design</button>
-        <button class="doc-tab" onclick="filterDocs('banco-de-dados', this)">Banco de Dados</button>
+        <button class="doc-tab active" data-filter="all">Todos</button>
+        <button class="doc-tab" data-filter="sr2">SR2 ✦</button>
+        <button class="doc-tab" data-filter="pesquisa">Pesquisa</button>
+        <button class="doc-tab" data-filter="gestao">Gestão</button>
+        <button class="doc-tab" data-filter="planejamento">Planejamento</button>
+        <button class="doc-tab" data-filter="design">Design</button>
+        <button class="doc-tab" data-filter="banco-de-dados">Banco de Dados</button>
       </div>
 
       <!-- ==================== DOCUMENTS GRID ==================== -->
@@ -1739,12 +1739,11 @@
     }
 
     /* — Document Category Filter — */
-    window.filterDocs = function(category, btn) {
+    function filterDocs(category, btn) {
       document.querySelectorAll('.doc-tab').forEach(function (t) { t.classList.remove('active'); });
       btn.classList.add('active');
 
-      var cards = document.querySelectorAll('.doc-card');
-      cards.forEach(function (card) {
+      document.querySelectorAll('.doc-card').forEach(function (card) {
         var cats = (card.dataset.category || '').split(' ');
         if (category === 'all' || cats.indexOf(category) !== -1) {
           card.style.display = '';
@@ -1754,6 +1753,13 @@
         }
       });
     }
+
+    /* — Wire up tab clicks via event delegation (safe with Swup) — */
+    document.querySelectorAll('.doc-tab[data-filter]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        filterDocs(btn.dataset.filter, btn);
+      });
+    });
 
     /* — Scroll Reveal — */
     var revealElements = document.querySelectorAll('.reveal');
