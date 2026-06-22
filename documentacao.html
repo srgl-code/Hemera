@@ -1727,6 +1727,9 @@
 
   <!-- ==================== SCRIPTS ==================== -->
   <script data-swup-reload-script>
+    /* — Silenciar warnings de GSAP quando elemento não existe — */
+    gsap.config({ nullTargetWarn: false });
+
     /* — Registrar GSAP ScrollTrigger — */
     gsap.registerPlugin(ScrollTrigger);
 
@@ -1737,6 +1740,9 @@
     window.toggleMenu = function() {
       document.getElementById('mobileMenu').classList.toggle('open');
     }
+
+    /* — Sair imediatamente se não estamos na página Documentação — */
+    if (!document.querySelector('.doc-tabs')) return;
 
     /* — Document Category Filter — */
     function filterDocs(category, btn) {
