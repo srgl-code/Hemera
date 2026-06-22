@@ -1734,12 +1734,12 @@
     lucide.createIcons();
 
     /* — Mobile Menu Toggle — */
-    function toggleMenu() {
+    window.toggleMenu = function() {
       document.getElementById('mobileMenu').classList.toggle('open');
     }
 
     /* — Document Category Filter — */
-    function filterDocs(category, btn) {
+    window.filterDocs = function(category, btn) {
       document.querySelectorAll('.doc-tab').forEach(function (t) { t.classList.remove('active'); });
       btn.classList.add('active');
 
