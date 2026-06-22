@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <!-- ============================================================
@@ -810,6 +810,10 @@
       .timeline-dot {
         left: -22px;
       }
+
+      .pontos-section [style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+      }
     }
 
     @media (max-width: 480px) {
@@ -899,10 +903,12 @@
 
       <div class="doc-tabs">
         <button class="doc-tab active" onclick="filterDocs('all', this)">Todos</button>
+        <button class="doc-tab" onclick="filterDocs('sr2', this)">SR2 ✦</button>
         <button class="doc-tab" onclick="filterDocs('pesquisa', this)">Pesquisa</button>
         <button class="doc-tab" onclick="filterDocs('gestao', this)">Gestão</button>
         <button class="doc-tab" onclick="filterDocs('planejamento', this)">Planejamento</button>
         <button class="doc-tab" onclick="filterDocs('design', this)">Design</button>
+        <button class="doc-tab" onclick="filterDocs('banco-de-dados', this)">Banco de Dados</button>
       </div>
 
       <!-- ==================== DOCUMENTS GRID ==================== -->
@@ -1128,6 +1134,116 @@
           </div>
         </article>
 
+        <!-- Card 11 — Protótipo Navegável (SR2) -->
+        <article class="doc-card reveal" data-category="sr2 design">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="layout" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Protótipo Navegável — Solução</h3>
+              <span class="doc-type">SR2 · Design — Eduardo Martiniano</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Protótipo interativo de alta fidelidade do Hemera. Fluxo completo de onboarding por voz, dashboard unificado de IoT, agenda integrada e configuração multiusuário. Validado com a equipe durante o Sprint Review 2.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge" style="background:rgba(194,122,83,0.18);color:var(--color-primary);">SR2 · Validado</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 12 — Pontos Fortes e de Melhoria (SR2) -->
+        <article class="doc-card reveal delay-1" data-category="sr2 gestao">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="bar-chart-2" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Pontos Fortes e de Melhoria</h3>
+              <span class="doc-type">SR2 · Gestão — Giovana Castro</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Análise crítica do Sprint Review 2: pontos fortes (entrega do protótipo, coesão da equipe, qualidade do pitch), e pontos de melhoria (aderência ao cronograma, comunicação interna, refinamento do backlog).</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge" style="background:rgba(194,122,83,0.18);color:var(--color-primary);">SR2 · Concluído</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 13 — Lições Aprendidas + Planejado x Realizado (SR2) -->
+        <article class="doc-card reveal delay-2" data-category="sr2 gestao">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="book-open" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>Lições Aprendidas + Planejado × Realizado</h3>
+              <span class="doc-type">SR2 · Gestão — João Pedro</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Retrospectiva do SR2 com comparativo entre o planejado e o realizado: entregas concluídas (Pitch SR2, Protótipo, Ajustes Front-end), em andamento e no backlog. Lições para o próximo ciclo.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge" style="background:rgba(194,122,83,0.18);color:var(--color-primary);">SR2 · Concluído</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 14 — DDL / Requisitos BD (SR2) -->
+        <article class="doc-card reveal delay-3" data-category="sr2 banco-de-dados">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="database" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>DDL — CREATE TABLE + Constraints + RLS</h3>
+              <span class="doc-type">SR2 · Banco de Dados — Erivan Junior</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Script DDL completo do Hemera: tabelas de usuários (biometria vocal, perfis multiusuário), dispositivos IoT, eventos/comandos, rotinas automáticas e configurações. Row Level Security (RLS) para isolamento de dados por morador.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge" style="background:rgba(194,122,83,0.18);color:var(--color-primary);">SR2 · Backlog</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Card 15 — DML + DQL (SR2) -->
+        <article class="doc-card reveal delay-4" data-category="sr2 banco-de-dados">
+          <div class="doc-card-header">
+            <div class="doc-card-icon">
+              <i data-lucide="code-2" style="width:24px;height:24px;"></i>
+            </div>
+            <div class="doc-card-meta">
+              <h3>DML &amp; DQL — Scripts INSERT + 9 Consultas</h3>
+              <span class="doc-type">SR2 · Banco de Dados — Erivan Junior</span>
+            </div>
+          </div>
+          <div class="doc-card-body">
+            <p>Scripts DML com dados iniciais (seed) para usuários, dispositivos e rotinas padrão. DQL com 9 categorias de consulta: relatórios de uso, histórico de comandos, consumo por dispositivo, agenda integrada e análise de padrões.</p>
+          </div>
+          <div class="doc-card-footer">
+            <span class="doc-badge" style="background:rgba(194,122,83,0.18);color:var(--color-primary);">SR2 · Backlog</span>
+            <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ" target="_blank" class="doc-link">
+              Acessar <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+            </a>
+          </div>
+        </article>
+
       </div><!-- /docs-grid -->
     </div>
   </section>
@@ -1227,10 +1343,10 @@
         <div class="timeline-item active reveal delay-4">
           <div class="timeline-dot"></div>
           <div class="timeline-content">
-            <span class="timeline-date">Fase Atual — Ideação</span>
-            <h4>Criar Possíveis Soluções</h4>
+            <span class="timeline-date">Sprint Review 2 — Jun/2026</span>
+            <h4>Prototipação &amp; Requisitos BD</h4>
             <span class="timeline-badge">em andamento</span>
-            <p>Brainstorming, análise de impacto vs esforço e priorização de funcionalidades para o MVP do Hemera.</p>
+            <p>Protótipo navegável (Eduardo), Requisitos BD — DDL/DML/DQL (Erivan), Pitch SR2 (João Pedro), Pontos Fortes e de Melhoria (Giovana), Ajustes Front-end (Saulo), Revisão Drive (Maria Vitória).</p>
           </div>
         </div>
 
@@ -1239,10 +1355,356 @@
           <div class="timeline-dot"></div>
           <div class="timeline-content">
             <span class="timeline-date">Próximas Fases</span>
-            <h4>Prototipação → Execução → Encerramento</h4>
-            <p>MVP Conceitual, testes iniciais, desenvolvimento, integração IoT, e avaliação final de resultados e lições aprendidas.</p>
+            <h4>Execução → Encerramento</h4>
+            <p>Desenvolvimento integrado com BD, testes com usuários, integração IoT completa, conectar aplicação ao banco de dados e avaliação final de resultados.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOLUÇÃO / PROTÓTIPO (SR2) ==================== -->
+  <section class="solution-section" aria-label="Solução — Protótipo SR2" style="padding: var(--space-2xl) 0;">
+    <div class="container">
+      <h2 class="section-title reveal">Solução — Protótipo Navegável</h2>
+      <span class="accent-line reveal"></span>
+      <p class="section-subtitle reveal">
+        Resultado do Sprint Review 2: o protótipo interativo do Hemera, com fluxo completo de voz,
+        dashboard unificado e controle multiusuário de dispositivos IoT.
+      </p>
+
+      <div class="reveal" style="
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-lg);
+        margin-bottom: var(--space-xl);
+      ">
+
+        <!-- Feature 1 -->
+        <div style="
+          background: var(--color-bg-glass);
+          backdrop-filter: blur(var(--blur-glass));
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-lg);
+          text-align: center;
+        ">
+          <div style="
+            width:56px; height:56px; margin:0 auto var(--space-md);
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg,rgba(194,122,83,0.12),rgba(217,155,120,0.08));
+            display:flex; align-items:center; justify-content:center;
+            color: var(--color-primary);
+          ">
+            <i data-lucide="mic" style="width:26px;height:26px;"></i>
+          </div>
+          <h3 style="font-size:1.1rem; margin-bottom:var(--space-xs);">Onboarding por Voz</h3>
+          <p style="color:var(--color-text-light); font-size:0.92rem; line-height:1.6;">
+            Cadastro e identificação de moradores via biometria vocal — zero wake words,
+            reconhecimento passivo em tempo real.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div style="
+          background: var(--color-bg-glass);
+          backdrop-filter: blur(var(--blur-glass));
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-lg);
+          text-align: center;
+        ">
+          <div style="
+            width:56px; height:56px; margin:0 auto var(--space-md);
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg,rgba(194,122,83,0.12),rgba(217,155,120,0.08));
+            display:flex; align-items:center; justify-content:center;
+            color: var(--color-primary);
+          ">
+            <i data-lucide="home" style="width:26px;height:26px;"></i>
+          </div>
+          <h3 style="font-size:1.1rem; margin-bottom:var(--space-xs);">Dashboard Unificado</h3>
+          <p style="color:var(--color-text-light); font-size:0.92rem; line-height:1.6;">
+            Painel central para controle de todos os dispositivos IoT da residência,
+            com status em tempo real e ações rápidas por voz ou toque.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div style="
+          background: var(--color-bg-glass);
+          backdrop-filter: blur(var(--blur-glass));
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-lg);
+          text-align: center;
+        ">
+          <div style="
+            width:56px; height:56px; margin:0 auto var(--space-md);
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg,rgba(194,122,83,0.12),rgba(217,155,120,0.08));
+            display:flex; align-items:center; justify-content:center;
+            color: var(--color-primary);
+          ">
+            <i data-lucide="calendar-check" style="width:26px;height:26px;"></i>
+          </div>
+          <h3 style="font-size:1.1rem; margin-bottom:var(--space-xs);">Agenda Integrada</h3>
+          <p style="color:var(--color-text-light); font-size:0.92rem; line-height:1.6;">
+            Sincronização automática com calendários e listas de tarefas — a casa
+            antecipa necessidades com base na rotina de cada morador.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Prototype CTA -->
+      <div class="reveal" style="text-align:center;">
+        <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ"
+           target="_blank"
+           class="btn btn-primary"
+           style="display:inline-flex; align-items:center; gap:0.5rem; font-family:var(--font-heading); font-size:0.92rem; font-weight:600; padding:0.85rem 2rem; border-radius:var(--radius-md); background:linear-gradient(135deg,var(--color-primary),var(--color-primary-light)); color:var(--color-white); text-transform:uppercase; letter-spacing:0.05em; text-decoration:none;">
+          <i data-lucide="layout" style="width:18px;height:18px;"></i>
+          Ver Protótipo no Drive
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PONTOS FORTES E DE MELHORIA (SR2) ==================== -->
+  <section class="pontos-section" aria-label="Pontos Fortes e de Melhoria SR2" style="padding: var(--space-2xl) 0; background: linear-gradient(135deg, rgba(194,122,83,0.04), rgba(232,196,160,0.06));">
+    <div class="container">
+      <h2 class="section-title reveal">Pontos Fortes e de Melhoria</h2>
+      <span class="accent-line reveal"></span>
+      <p class="section-subtitle reveal">
+        Análise crítica da equipe após o Sprint Review 2 — o que funcionou bem
+        e o que será aprimorado nas próximas sprints.
+      </p>
+
+      <div style="
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+      " class="reveal">
+
+        <!-- Pontos Fortes -->
+        <div style="
+          background: var(--color-bg-glass);
+          backdrop-filter: blur(var(--blur-glass));
+          border: 1px solid rgba(194,122,83,0.25);
+          border-top: 4px solid var(--color-primary);
+          border-radius: var(--radius-lg);
+          padding: var(--space-lg);
+        ">
+          <div style="display:flex; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-md);">
+            <div style="
+              width:44px; height:44px;
+              border-radius: var(--radius-sm);
+              background: linear-gradient(135deg,rgba(194,122,83,0.15),rgba(217,155,120,0.1));
+              display:flex; align-items:center; justify-content:center;
+              color: var(--color-primary); flex-shrink:0;
+            ">
+              <i data-lucide="thumbs-up" style="width:22px;height:22px;"></i>
+            </div>
+            <h3 style="font-size:1.15rem;">Pontos Fortes</h3>
+          </div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:var(--space-sm);">
+            <li style="display:flex; gap:var(--space-xs); color:var(--color-text-light); font-size:0.93rem; line-height:1.6;">
+              <span style="color:var(--color-primary); font-weight:700; flex-shrink:0;">✦</span>
+              Entrega do protótipo navegável dentro do sprint, com validação da equipe completa.
+            </li>
+            <li style="display:flex; gap:var(--space-xs); color:var(--color-text-light); font-size:0.93rem; line-height:1.6;">
+              <span style="color:var(--color-primary); font-weight:700; flex-shrink:0;">✦</span>
+              Pitch SR2 bem estruturado, apresentando a solução com clareza e coesão.
+            </li>
+            <li style="display:flex; gap:var(--space-xs); color:var(--color-text-light); font-size:0.93rem; line-height:1.6;">
+              <span style="color:var(--color-primary); font-weight:700; flex-shrink:0;">✦</span>
+              Qualidade técnica dos artefatos de pesquisa (Persona, Service Blueprint, Mapa de Empatia).
+            </li>
+            <li style="display:flex; gap:var(--space-xs); color:var(--color-text-light); font-size:0.93rem; line-height:1.6;">
+              <span style="color:var(--color-primary); font-weight:700; flex-shrink:0;">✦</span>
+              Colaboração entre UX e Dev para ajustes de front-end antes do SR2.
+            </li>
+            <li style="display:flex; gap:var(--space-xs); color:var(--color-text-light); font-size:0.93rem; line-height:1.6;">
+              <span style="color:var(--color-primary); font-weight:700; flex-shrink:0;">✦</span>
+              Site do projeto atualizado e publicado com as seções do SR2 no prazo.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Pontos de Melhoria -->
+        <div style="
+          background: var(--color-bg-glass);
+          backdrop-filter: blur(var(--blur-glass));
+          border: 1px solid rgba(194,122,83,0.15);
+          border-top: 4px solid var(--color-primary-light);
+          border-radius: var(--radius-lg);
+          padding: var(--space-lg);
+        ">
+          <div style="display:flex; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-md);">
+            <div style="
+              width:44px; height:44px;
+              border-radius: var(--radius-sm);
+              background: linear-gradient(135deg,rgba(217,155,120,0.15),rgba(232,196,160,0.1));
+              display:flex; align-items:center; justify-content:center;
+              color: var(--color-primary-light); flex-shrink:0;
+            ">
+              <i data-lucide="trending-up" style="width:22px;height:22px;"></i>
+            </div>
+            <h3 style="font-size:1.15rem;">Pontos de Melhoria</h3>
+          </div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:var(--space-sm);">
+            <li style="display:flex; gap:var(--space-xs); color:var(--color-text-light); font-size:0.93rem; line-height:1.6;">
+              <span style="color:var(--color-primary-light); font-weight:700; flex-shrink:0;">→</span>
+              Itens do backlog (DDL/DML/DQL, aplicação conectada ao BD) ficaram em atraso — priorizar no próximo sprint.
+            </li>
+            <li style="display:flex; gap:var(--space-xs); color:var(--color-text-light); font-size:0.93rem; line-height:1.6;">
+              <span style="color:var(--color-primary-light); font-weight:700; flex-shrink:0;">→</span>
+              Cronograma atualizado ainda pendente — planejar com mais antecedência as entregas de documentação.
+            </li>
+            <li style="display:flex; gap:var(--space-xs); color:var(--color-text-light); font-size:0.93rem; line-height:1.6;">
+              <span style="color:var(--color-primary-light); font-weight:700; flex-shrink:0;">→</span>
+              FACT respondido por todos os membros precisa de acompanhamento mais ativo do Scrum Master.
+            </li>
+            <li style="display:flex; gap:var(--space-xs); color:var(--color-text-light); font-size:0.93rem; line-height:1.6;">
+              <span style="color:var(--color-primary-light); font-weight:700; flex-shrink:0;">→</span>
+              Revisão e ensaio cronometrado dos slides deve acontecer antes de cada Sprint Review.
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== REQUISITOS BD (SR2) ==================== -->
+  <section class="bd-section" aria-label="Requisitos de Banco de Dados" style="padding: var(--space-2xl) 0;">
+    <div class="container">
+      <h2 class="section-title reveal">Requisitos de Banco de Dados</h2>
+      <span class="accent-line reveal"></span>
+      <p class="section-subtitle reveal">
+        Estrutura de dados do Hemera — tabelas, relacionamentos e scripts SQL desenvolvidos
+        por Erivan Junior para a Sprint Review 2.
+      </p>
+
+      <div style="
+        display:grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: var(--space-md);
+        margin-bottom: var(--space-xl);
+      ">
+
+        <!-- DDL -->
+        <div class="reveal" style="
+          background: var(--color-bg-glass);
+          backdrop-filter: blur(var(--blur-glass));
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-md) var(--space-lg);
+        ">
+          <div style="display:flex; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-md);">
+            <div style="
+              width:44px; height:44px;
+              border-radius:var(--radius-sm);
+              background:linear-gradient(135deg,rgba(194,122,83,0.12),rgba(217,155,120,0.08));
+              display:flex; align-items:center; justify-content:center;
+              color:var(--color-primary);
+            ">
+              <i data-lucide="table-2" style="width:22px;height:22px;"></i>
+            </div>
+            <div>
+              <h4 style="font-size:1rem; margin-bottom:2px;">DDL</h4>
+              <span style="font-size:0.78rem; color:var(--color-text-light); text-transform:uppercase; letter-spacing:0.05em;">Definição de Estrutura</span>
+            </div>
+          </div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><code style="background:rgba(194,122,83,0.08);padding:2px 6px;border-radius:4px;color:var(--color-primary);font-size:0.82rem;">tb_usuarios</code> — perfis, biometria vocal</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><code style="background:rgba(194,122,83,0.08);padding:2px 6px;border-radius:4px;color:var(--color-primary);font-size:0.82rem;">tb_dispositivos</code> — IoT, sensores, atuadores</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><code style="background:rgba(194,122,83,0.08);padding:2px 6px;border-radius:4px;color:var(--color-primary);font-size:0.82rem;">tb_eventos</code> — log de comandos e automações</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><code style="background:rgba(194,122,83,0.08);padding:2px 6px;border-radius:4px;color:var(--color-primary);font-size:0.82rem;">tb_rotinas</code> — schedules e regras automáticas</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><code style="background:rgba(194,122,83,0.08);padding:2px 6px;border-radius:4px;color:var(--color-primary);font-size:0.82rem;">tb_configuracoes</code> — preferências por usuário</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="font-size:0.75rem;background:rgba(194,122,83,0.1);padding:2px 6px;border-radius:4px;color:var(--color-primary-dark);font-weight:600;">RLS</span> — Row Level Security por morador</li>
+          </ul>
+        </div>
+
+        <!-- DML -->
+        <div class="reveal delay-1" style="
+          background: var(--color-bg-glass);
+          backdrop-filter: blur(var(--blur-glass));
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-md) var(--space-lg);
+        ">
+          <div style="display:flex; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-md);">
+            <div style="
+              width:44px; height:44px;
+              border-radius:var(--radius-sm);
+              background:linear-gradient(135deg,rgba(194,122,83,0.12),rgba(217,155,120,0.08));
+              display:flex; align-items:center; justify-content:center;
+              color:var(--color-primary);
+            ">
+              <i data-lucide="plus-circle" style="width:22px;height:22px;"></i>
+            </div>
+            <div>
+              <h4 style="font-size:1rem; margin-bottom:2px;">DML</h4>
+              <span style="font-size:0.78rem; color:var(--color-text-light); text-transform:uppercase; letter-spacing:0.05em;">Manipulação de Dados</span>
+            </div>
+          </div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+            <li style="font-size:0.88rem; color:var(--color-text-light);">INSERT de usuários (Mariana, Rafael e moradores padrão)</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);">INSERT de dispositivos IoT (luzes, sensores, climatização)</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);">INSERT de rotinas automáticas (despertar, encerramento)</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);">INSERT de eventos históricos para testes de DQL</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);">Scripts de seed para ambiente de desenvolvimento</li>
+          </ul>
+        </div>
+
+        <!-- DQL -->
+        <div class="reveal delay-2" style="
+          background: var(--color-bg-glass);
+          backdrop-filter: blur(var(--blur-glass));
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-lg);
+          padding: var(--space-md) var(--space-lg);
+        ">
+          <div style="display:flex; align-items:center; gap:var(--space-sm); margin-bottom:var(--space-md);">
+            <div style="
+              width:44px; height:44px;
+              border-radius:var(--radius-sm);
+              background:linear-gradient(135deg,rgba(194,122,83,0.12),rgba(217,155,120,0.08));
+              display:flex; align-items:center; justify-content:center;
+              color:var(--color-primary);
+            ">
+              <i data-lucide="search" style="width:22px;height:22px;"></i>
+            </div>
+            <div>
+              <h4 style="font-size:1rem; margin-bottom:2px;">DQL — 9 Categorias</h4>
+              <span style="font-size:0.78rem; color:var(--color-text-light); text-transform:uppercase; letter-spacing:0.05em;">Consultas &amp; Relatórios</span>
+            </div>
+          </div>
+          <ol style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="color:var(--color-primary); font-weight:600; margin-right:4px;">01.</span>Histórico de comandos por usuário</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="color:var(--color-primary); font-weight:600; margin-right:4px;">02.</span>Consumo energético por dispositivo</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="color:var(--color-primary); font-weight:600; margin-right:4px;">03.</span>Rotinas mais ativadas por morador</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="color:var(--color-primary); font-weight:600; margin-right:4px;">04.</span>Dispositivos com mais falhas/timeouts</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="color:var(--color-primary); font-weight:600; margin-right:4px;">05.</span>Agenda de compromissos por dia</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="color:var(--color-primary); font-weight:600; margin-right:4px;">06.</span>Padrões de comportamento por horário</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="color:var(--color-primary); font-weight:600; margin-right:4px;">07.</span>Relatório de produtividade semanal</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="color:var(--color-primary); font-weight:600; margin-right:4px;">08.</span>Status atual de todos os dispositivos</li>
+            <li style="font-size:0.88rem; color:var(--color-text-light);"><span style="color:var(--color-primary); font-weight:600; margin-right:4px;">09.</span>Ranking de uso de comandos de voz</li>
+          </ol>
+        </div>
+
+      </div>
+
+      <div class="reveal" style="text-align:center;">
+        <a href="https://drive.google.com/drive/folders/1r25Brt4nwkJKQYa9xQ0idQM40zP8lvoQ"
+           target="_blank"
+           style="display:inline-flex; align-items:center; gap:0.5rem; font-family:var(--font-heading); font-size:0.88rem; font-weight:600; padding:0.75rem 1.8rem; border-radius:var(--radius-md); border:2px solid var(--color-primary); color:var(--color-primary); text-transform:uppercase; letter-spacing:0.05em; text-decoration:none; transition:all var(--transition);"
+           onmouseover="this.style.background='var(--color-primary)';this.style.color='white';"
+           onmouseout="this.style.background='transparent';this.style.color='var(--color-primary)';">
+          <i data-lucide="database" style="width:18px;height:18px;"></i>
+          Acessar Scripts no Drive
+        </a>
       </div>
     </div>
   </section>
@@ -1283,7 +1745,8 @@
 
       var cards = document.querySelectorAll('.doc-card');
       cards.forEach(function (card) {
-        if (category === 'all' || card.dataset.category === category) {
+        var cats = (card.dataset.category || '').split(' ');
+        if (category === 'all' || cats.indexOf(category) !== -1) {
           card.style.display = '';
           card.style.animation = 'fadeInUp 0.4s ease-out both';
         } else {
